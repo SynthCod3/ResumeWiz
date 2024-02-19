@@ -1,8 +1,9 @@
+import Button from '../Button'
 import styles from './index.module.css'
 const Navbar = () => {
   return (
     <div className={styles.navbarWrapper}>
-      <div className={styles.navbarHeading}>ResumeWiz</div>
+      <div className={styles.navbarHeading}>Resume<span>Wiz</span></div>
       <div className={styles.navbarLinks}>
         <ul>
           <li>Home</li>
@@ -11,7 +12,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className={styles.navbarButton}>
-        <button>Sign Up</button>
+        <Button name="Sign Up"/>
       </div>
     </div>
   )
