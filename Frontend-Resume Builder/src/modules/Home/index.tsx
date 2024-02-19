@@ -5,7 +5,6 @@ const Home = () => {
   return (
     <div>
         <Navbar/>
-      Homeindex
       </div>
   )
 }
