@@ -1,9 +1,11 @@
 import styles from './index.module.css'
 import image from '../../assets/profile.png'
+import Navbar from '../../components/Navbar'
 
 const Home = () => {
   return (
     <div>
+      <Navbar/>
         <div className={styles.homeWrapper}>
           <div className={styles.homeContent}>
             <span>ENHANCE YOUR CAREER PROSPECTS.</span>
