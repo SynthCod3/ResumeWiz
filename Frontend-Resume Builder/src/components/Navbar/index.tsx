@@ -1,4 +1,3 @@
-import Button from '../Button'
 import styles from './index.module.css'
 const Navbar = () => {
   return (
@@ -12,7 +11,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className={styles.navbarButton}>
-        <Button name="Sign Up"/>
+        <button>Sign Up</button>
       </div>
     </div>
   )
