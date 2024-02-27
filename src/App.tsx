@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Home from "./modules/Home";
 import SignIn from "./modules/SignIn";
+import SignUp from "./modules/SignUp";
 
 function App() {
     const router = createBrowserRouter([
@@ -13,7 +14,11 @@ function App() {
         {
             path: "/signIn",
             element: <SignIn />
-          }  
+          },  
+          {
+              path: "/signUp",
+              element: <SignUp />
+            }    
     ]);
     return (
         <div className="App">
