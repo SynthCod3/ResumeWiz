@@ -1,6 +1,5 @@
-
-import { FcGoogle } from 'react-icons/fc';
 import styles from './index.module.css'; 
+import { SiLinkedin } from 'react-icons/si';
 
 
 const SignIn = () => {
@@ -45,7 +44,7 @@ const SignIn = () => {
             </span>
             <span>OR</span>
               <button className={styles.Google}>
-              <FcGoogle /> Sign in with Google
+              <SiLinkedin /> Sign in with Linkedin
               </button>
         </div>
         </div>
