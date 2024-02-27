@@ -1,0 +1,32 @@
+.navbarWrapper{
+    display: flex;
+    justify-content: space-around;
+    height: 40px;
+    font-family:var(--text-heading) ;
+    background:  #F8EFFF ;
+    padding:1.5vw 0vw;
+}
+
+.navbarWrapper .navbarHeading{
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.navbarWrapper .navbarHeading span{
+    color:var(--secondary);
+}
+
+.navbarWrapper .navbarLinks ul{
+    display: flex;
+    gap:4vw;
+    font-size: 1.1rem;
+    list-style: none;
+    font-weight: 600;
+}
+
+.navbarWrapper .navbarLinks ul li:hover{
+    color: var(--secondary);
+    cursor: pointer;
+   
+}
+
