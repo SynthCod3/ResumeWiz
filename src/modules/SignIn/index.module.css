@@ -1,16 +1,79 @@
-.signInWrapper{
-     
-    height:100vh;
-}
 
-.signInImage{
-    padding-top: 5rem;
-    display:flex;
-    justify-content: center; 
-}
-
-.signInImage img{
-   width:50%;
-   border-radius: 15px;
-    object-fit: contain;
-}
+.sigInWrapper {
+    display: flex;
+    margin: 5.3rem auto;
+    width:fit-content;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--text-section);
+    background-color: rgba(255, 252, 252, 0.272); 
+    border: 2px solid rgb(228, 162, 243);
+    border-radius: 15px;
+    color:black;
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+ 
+  .sigInHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .sigInHeader span:first-child {
+    font-size: 2rem;
+    font-weight: 600;
+    color:black;
+  }
+  
+  .sigInHeader span:last-child {
+    color:black;
+    font-weight: 300;
+   
+  }
+  
+ 
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+ 
+  input {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+ 
+  .ForgotPass {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .ForgotPass input {
+    margin-right: 8px;
+  }
+  
+  .ForgotPass button {
+   
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  span {
+    color: var(--accent);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+ 
+ 
