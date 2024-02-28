@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
 	const [data, setData] = useState({
+		name: "",
 		email: "",
 		password: "",
 		confirmPassword: "",
@@ -17,27 +18,43 @@ const SignUp = () => {
 			toast.error("Passwords do not match");
 			return;
 		}
-
 		if (data.password.length < 6) {
 			toast.error("Password must be at least 6 characters");
 			return;
 		}
-
 		if (data.email === "") {
 			toast.error("Email is required");
+			return;
+		}
+		if (data.name === "") {
+			toast.error("Name is required");
 			return;
 		}
 	};
 
 	const handleSignUp = async () => {
-		let { data: res, error } = await supabase.auth.signUp({
+		let { data: user, error } = await supabase.auth.signUp({
 			email: data.email,
 			password: data.password,
 		});
 		if (error) {
 			throw error.message;
 		} else {
-			return res;
+			const { data: res, error } = await supabase
+				.from("users")
+				.insert([
+					{
+						id: user.user?.id,
+						name: data.name,
+						email: data.email,
+					},
+				])
+				.select();
+			if (error) {
+				throw error.message;
+			} else {
+				return res;
+			}
 		}
 	};
 
@@ -63,6 +80,13 @@ const SignUp = () => {
 				<span>Please sign up to get started</span>
 			</div>
 			<form onSubmit={handleSubmit}>
+				<span>Name</span>
+				<input
+					type="name"
+					placeholder="full name"
+					required
+					onChange={(e) => setData({ ...data, name: e.target.value })}
+				/>
 				<span>Email</span>
 				<input
 					type="email"
