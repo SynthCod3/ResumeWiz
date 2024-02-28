@@ -1,5 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import styles from './index.module.css'
 const Navbar = () => {
+  
+  const navigate = useNavigate();
+
+const handleSignUp = () => {
+    navigate('/signup')
+}
+
   return (
     <div className={styles.navbarWrapper}>
       <div className={styles.navbarHeading}>Resume<span>Wiz</span></div>
@@ -11,7 +19,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className={styles.navbarButton}>
-        <button>Sign Up</button>
+        <button onClick={handleSignUp}>Sign Up</button>
       </div>
     </div>
   )
