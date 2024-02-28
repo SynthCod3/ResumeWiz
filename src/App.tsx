@@ -5,6 +5,7 @@ import Home from "./modules/Home";
 import SignIn from "./modules/SignIn";
 import SignUp from "./modules/SignUp";
 import NotFound from "./modules/notFound";
+import ResumeEditor from "./modules/editor";
 
 function App() {
 	const router = createBrowserRouter([
@@ -27,6 +28,10 @@ function App() {
 		{
 			path: "/signup",
 			element: <SignUp />,
+		},
+		{
+			path: "/editor",
+			element: <ResumeEditor />,
 		},
 	]);
 	return (
