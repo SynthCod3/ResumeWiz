@@ -21,35 +21,18 @@ function App() {
 			element: <Home />,
 		},
 		{
-			path: "/signIn",
+			path: "/signin",
 			element: <SignIn />,
 		},
 		{
-			path: "/signUp",
+			path: "/signup",
 			element: <SignUp />,
 		},
 	]);
 	return (
 		<div className="App">
 			<RouterProvider router={router} />
-			<Toaster
-				position="bottom-center"
-				reverseOrder={false}
-				toastOptions={{
-					success: {
-						style: {
-							background: "var(--border)",
-							color: "var(--foreground)",
-						},
-					},
-					error: {
-						style: {
-							background: "var(--border)",
-							color: "var(--foreground)",
-						},
-					},
-				}}
-			/>
+			<Toaster position="bottom-center" reverseOrder={false} />
 		</div>
 	);
 }
