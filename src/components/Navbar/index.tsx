@@ -13,8 +13,8 @@ const handleSignUp = () => {
       <div className={styles.navbarHeading}>Resume<span>Wiz</span></div>
       <div className={styles.navbarLinks}>
         <ul>
-          <li>Home</li>
-          <li>Template</li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/template">Template</a></li>
           <li>About</li>
         </ul>
       </div>
