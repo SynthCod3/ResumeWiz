@@ -37,7 +37,6 @@ const SignUp = () => {
 		if (error) {
 			throw error.message;
 		} else {
-			localStorage.setItem("user", JSON.stringify(res.session));
 			return res;
 		}
 	};
