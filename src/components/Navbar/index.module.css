@@ -32,4 +32,9 @@
     cursor: pointer;
    
 }
+.navbarWrapper .navbarLinks ul li a:hover{
+    color: var(--secondary);
+    cursor: pointer;
+   
+}
 
