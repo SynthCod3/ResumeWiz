@@ -10,7 +10,7 @@
 	--primary: #191919;
 	--secondary: #8910F1;
 	--background: #FDFDFD;
-	--navbar: #dfc7f1;
+	--navbar: #f0eff2;
 	--tertiary:#F63C7C;
 	--text-heading: 'Nunito', sans-serif;
   --text-body: 'Fira Sans', sans-serif;
@@ -29,7 +29,6 @@ html, body {
 	padding: 0;
 	margin: 0;
 	font-family: var(--text-body);
-	background: linear-gradient(to bottom, #f3ecf9 0%, var(--navbar) 100%);
 	color: var(--primary);
 }
 
