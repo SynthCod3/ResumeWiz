@@ -1,6 +1,13 @@
-.Wrapper {
+.editorWrapper {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	gap: 5rem;
+}
+
+input:disabled {
+	background-color: transparent !important;
+	color: black !important;
+	border: none !important;
+	padding: 0;
 }
