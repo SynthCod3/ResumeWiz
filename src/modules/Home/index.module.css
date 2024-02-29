@@ -1,6 +1,8 @@
 .homeWrapper{
     display:flex;
     padding: 3rem 3rem;
+    justify-content: center;
+
 }
 
 .homeWrapper .homeContent{
