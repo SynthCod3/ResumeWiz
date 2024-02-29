@@ -1,0 +1,31 @@
+.templateWrapper{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2rem;
+    color: var(--primary);
+    justify-content: center;
+    gap: 1.5em;
+    font-family: var(--text-section);
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+}
+
+.templateContent{
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    font-size: 1rem;
+}
+
+.templateContent div img{
+    border-radius: 15px;
+    border: 1px solid var(--muted);
+}
+
+.templateContent div img:hover{
+    filter: drop-shadow(0 0 0.75rem var(--muted));
+    border: 1px solid var(--secondary);
+    cursor: pointer;
+}

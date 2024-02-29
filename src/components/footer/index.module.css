@@ -47,8 +47,6 @@
     font-size: 0.8rem;
 }
 
-
-
 .footerLinks .footerAbout{
     display:flex;
     flex-direction: column;
@@ -57,6 +55,7 @@
     gap:1.5rem;
 }
 .footerLinks .footerAbout span:first-child{
+    color: var(--primary);
     font-size: 1.2rem;
     gap:1.8rem;
     font-weight: 400;
