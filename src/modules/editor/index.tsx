@@ -2,19 +2,12 @@ import { useState } from "react";
 import styles from "./index.module.css";
 
 const ResumeEditor = () => {
+	
 	const [data, setData] = useState({
 		name: "John Doe",
 		title: "Software Engineer",
-		contact: [
-			{
-				type: "email",
-				value: "john@example.com",
-			},
-			{
-				type: "website",
-				value: "www.johndoe.com",
-			},
-		],
+		email: "",
+		phone: "",
 		bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
 		experience: [
 			{
@@ -61,6 +54,7 @@ const ResumeEditor = () => {
 		<div>
 			<div className={styles.editorWrapper}>
 				<div className={styles.editor}>
+					<span>Name</span>
 					<input
 						type="text"
 						value={data.name}
@@ -71,6 +65,7 @@ const ResumeEditor = () => {
 							});
 						}}
 					/>
+					<span>Title</span>
 					<input
 						type="text"
 						value={data.title}
@@ -81,37 +76,29 @@ const ResumeEditor = () => {
 							});
 						}}
 					/>
+					<span>Email</span>
 					<input
 						type="text"
-						value={data.contact[0].value}
+						value={data.email}
 						onChange={(e) => {
 							setData({
 								...data,
-								contact: [
-									{
-										type: "email",
-										value: e.target.value,
-									},
-								],
+								email: e.target.value,
 							});
 						}}
 					/>
+					<span>Phone</span>
 					<input
 						type="text"
-						value={data.contact[1].value}
+						value={data.phone}
 						onChange={(e) => {
 							setData({
 								...data,
-								contact: [
-									{
-										type: "website",
-										value: e.target.value,
-									},
-								],
+								phone: e.target.value,
 							});
 						}}
 					/>
-
+					<span>Bio</span>
 					<textarea
 						value={data.bio}
 						onChange={(e) => {
@@ -128,11 +115,8 @@ const ResumeEditor = () => {
 						<div>{data.title}</div>
 					</div>
 					<div>
-						{data.contact.map((item) => (
-							<div key={item.type}>
-								{item.type}: {item.value}
-							</div>
-						))}
+						<div>{data.email}</div>
+						<div>{data.phone}</div>
 					</div>
 					<div>{data.bio}</div>
 					<hr />
