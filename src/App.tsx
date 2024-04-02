@@ -35,7 +35,7 @@ function App() {
 			element: <ResumeEditor />,
 		},
 		{
-			path: "/template",
+			path: "/templates",
 			element: <TemplateSelection />,
 		},
 	]);

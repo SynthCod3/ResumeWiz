@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styles from "./index.module.css";
+import Navbar from "../../components/Navbar";
 
 const ResumeEditor = () => {
-	
 	const [data, setData] = useState({
 		name: "John Doe",
 		title: "Software Engineer",
@@ -52,6 +52,7 @@ const ResumeEditor = () => {
 
 	return (
 		<div>
+			<Navbar />
 			<div className={styles.editorWrapper}>
 				<div className={styles.editor}>
 					<span>Name</span>
@@ -109,53 +110,63 @@ const ResumeEditor = () => {
 						}}
 					/>
 				</div>
-				<div className={styles.previewContent}>
-					<div>
-						<div>{data.name}</div>
-						<div>{data.title}</div>
-					</div>
-					<div>
-						<div>{data.email}</div>
-						<div>{data.phone}</div>
-					</div>
-					<div>{data.bio}</div>
-					<hr />
-					<h2>Experience</h2>
-					<div>
-						{data.experience.map((item) => (
-							<div key={item.company}>
-								<div>{item.company}</div>
-								<div>{item.jobTitle}</div>
-								<div>
-									{item.startDate} - {item.endDate}
+				<div className={styles.previewWrapper}>
+					<div className={styles.previewContent}>
+						<div>
+							<div className={styles.previewName}>
+								{data.name}
+							</div>
+							<div>{data.title}</div>
+						</div>
+						<div>
+							<div>{data.email}</div>
+							<div>{data.phone}</div>
+						</div>
+						<div>{data.bio}</div>
+						<hr />
+						<h2>Skills</h2>
+						<div className={styles.previewSkills}>
+							{data.skills.map((item, index) => (
+								<div
+									className={styles.previewSkillsData}
+									key={index}
+								>
+									<div>{item.name}</div>
+									<div>{item.value}%</div>
 								</div>
-								<div>{item.description}</div>
-							</div>
-						))}
-					</div>
-					<hr />
-					<h2>Education</h2>
-					<div>
-						{data.education.map((item) => (
-							<div key={item.institution}>
-								<div>{item.institution}</div>
-								<div>{item.course}</div>
-								<div>
-									{item.startDate} - {item.endDate}
+							))}
+						</div>
+						<hr />
+						<h2>Experience</h2>
+						<div className={styles.previewExperience}>
+							{data.experience.map((item) => (
+								<div
+									className={styles.previewExperienceData}
+									key={item.company}
+								>
+									<div>{item.company}</div>
+									<div>{item.jobTitle}</div>
+									<div>
+										{item.startDate} - {item.endDate}
+									</div>
+									<div>{item.description}</div>
 								</div>
-								<div>{item.description}</div>
-							</div>
-						))}
-					</div>
-					<hr />
-					<h2>Skills</h2>
-					<div>
-						{data.skills.map((item, index) => (
-							<div key={index}>
-								<div>{item.name}</div>
-								<div>{item.value}</div>
-							</div>
-						))}
+							))}
+						</div>
+						<hr />
+						<h2>Education</h2>
+						<div>
+							{data.education.map((item) => (
+								<div key={item.institution}>
+									<div>{item.institution}</div>
+									<div>{item.course}</div>
+									<div>
+										{item.startDate} - {item.endDate}
+									</div>
+									<div>{item.description}</div>
+								</div>
+							))}
+						</div>
 					</div>
 				</div>
 			</div>

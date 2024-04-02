@@ -1,13 +1,52 @@
 .editorWrapper {
 	display: flex;
 	flex-direction: row;
+	padding: 2rem;
 	justify-content: center;
 	gap: 5rem;
 }
 
-input:disabled {
-	background-color: transparent !important;
-	color: black !important;
-	border: none !important;
-	padding: 0;
+.previewWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30%;
+	padding: 0.5rem;
+	border: 1px solid black;
+}
+
+.previewWrapper .previewContent div .previewName {
+	font-size: 1.4rem;
+	font-weight: 700;
+	padding-bottom: 1.4rem;
+	font-family: var(--text-section);
+	color: rgb(50, 172, 254);
+}
+
+.previewSkills {
+	display: flex;
+	gap: 0.8rem;
+}
+
+.previewSkills .previewSkillsData {
+	display: flex;
+	padding: 0.2rem;
+	font-weight: 600;
+	background-color: white;
+	border-radius: 15px;
+	filter: drop-shadow(0 0 0.2rem rgb(224, 227, 228));
+	font-family: var(--text-section);
+}
+
+.previewExperience {
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
+}
+
+.previewExperience .previewExperienceData {
+	background-color: white;
+	border-radius: 15px;
+	padding: 0.5rem 2rem;
+	filter: drop-shadow(0 0 0.2rem rgb(224, 227, 228));
 }
