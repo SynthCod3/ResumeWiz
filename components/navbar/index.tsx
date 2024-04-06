@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 import { MdMenu } from 'react-icons/md';
 import { IoMdClose } from 'react-icons/io';
 import { useReactPath } from './path.hook';
+import Link from 'next/link';
+import { Button } from '../ui/button';
 
 export const Navbar = () => {
   const [openmenu, setopenmenu] = useState(false);
@@ -13,7 +15,7 @@ export const Navbar = () => {
     setopenmenu(!openmenu);
   }
   const path = useReactPath();
-  const navContent = ['Home', 'about Us', 'Courses', 'Join Us', 'Our Blog'];
+  const navContent = ['Templates', 'About Us'];
   useEffect(() => {}, [path]);
   const changeNavBg = () => {
     window.scrollY >= 150 ? setNavBg(true) : setNavBg(false);
@@ -74,43 +76,38 @@ export const Navbar = () => {
             <button className={styles.menuMd} onClick={openMenu}>
               <IoMdClose />
             </button>
-            {navContent.map((content, i) => (
-              <a
-                href={`/${content.toLowerCase().replace(/\s+/g, '')}`}
-                key={i.toString() + content}
-              >
-                <p
-                  style={{
-                    color: window.location.href.includes(
-                      `/${content.toLowerCase().replace(/\s+/g, '')}`,
-                    )
-                      ? '#05B570'
-                      : '#696969',
-                  }}
+            <div>
+              {navContent.map((content, i) => (
+                <a
+                  href={`/${content.toLowerCase().replace(/\s+/g, '')}`}
+                  key={i.toString() + content}
                 >
-                  {content}
-                </p>
-              </a>
-            ))}
-            <button className={styles.StudyButton}>
-              <a
-                href="https://opengrad-foundation.learnyst.com/learn"
-                target="_blank"
-              >
-                Enroll Now
-              </a>
-            </button>
+                  <p
+                    style={{
+                      color: window.location.href.includes(
+                        `/${content.toLowerCase().replace(/\s+/g, '')}`,
+                      )
+                        ? '#05B570'
+                        : '#696969',
+                    }}
+                  >
+                    {content}
+                  </p>
+                </a>
+              ))}
+            </div>
+            <Link
+              href={'/auth'}
+              className="w-full flex justify-center align-center"
+            >
+              <Button className="w-80">Sign Up</Button>
+            </Link>
           </div>
         )}
       </div>{' '}
-      <button className={styles.StudyButton}>
-        <a
-          href="https://opengrad-foundation.learnyst.com/learn"
-          target="_blank"
-        >
-          Enroll Now
-        </a>
-      </button>
+      <Link href={'/auth'} className={styles.EndButton}>
+        <Button>Sign Up</Button>
+      </Link>
     </div>
   );
 };

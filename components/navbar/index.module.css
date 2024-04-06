@@ -4,11 +4,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 25px 5vw 20px;
+  padding: 20px 5vw 20px;
   z-index: 9990;
   backdrop-filter: blur(8px);
   top: 0;
-  border-bottom: #00272d 0.2px solid;
 }
 .navbarWrapper > div {
   width: fit-content;
@@ -50,11 +49,13 @@
 .navbarMobile {
   display: none;
 }
+
 .navbarMobile .menuMd {
   background-color: transparent;
   color: black;
   font-size: 25px;
 }
+
 .navbarMobile > div {
   background-color: rgba(255, 255, 255, 1);
   z-index: 9999;
@@ -67,14 +68,15 @@
   right: 0vw;
   top: 0;
   gap: 5px;
-  height: calc(100vh);
+  height: calc(30vh);
   width: calc(100vw);
   justify-content: space-around;
+  align-items: center;
   padding: 20px;
 }
 .navbarMobile > div > a > p {
   color: rgb(0, 0, 0);
-  font-size: 20px;
+  /* font-size: 20px; */
   font-weight: 600;
   text-transform: capitalize;
 }
@@ -96,7 +98,8 @@
     flex-direction: row-reverse;
     align-items: baseline;
   }
-  .navbarWrapper > .StudyButton {
+  .navbarWrapper > .StudyButton,
+  .EndButton {
     display: none;
   }
 }
