@@ -20,52 +20,62 @@ export function Auth() {
   return (
     <Tabs defaultValue="account" className="w-[400px]">
       <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
+        <TabsTrigger value="account">Sign-Up</TabsTrigger>
+        <TabsTrigger value="password">Log-In</TabsTrigger>
       </TabsList>
       <TabsContent value="account">
         <Card>
           <CardHeader>
-            <CardTitle>Account</CardTitle>
+            <CardTitle>Sign-Up</CardTitle>
             <CardDescription>
               Make changes to your account here. Click save when you're done.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
             <div className="space-y-1">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" defaultValue="Pedro Duarte" />
+              <Label htmlFor="name">Email</Label>
+              <Input id="name" defaultValue="johndoe@gmail.com" />
             </div>
             <div className="space-y-1">
-              <Label htmlFor="username">Username</Label>
-              <Input id="username" defaultValue="@peduarte" />
+              <Label htmlFor="username">Password</Label>
+              <Input id="username" type="password" defaultValue="*******" />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="username">Confirm Password</Label>
+              <Input id="username" type="password" defaultValue="*******" />
             </div>
           </CardContent>
           <CardFooter>
-            <Button>Save changes</Button>
+            <Button>Sign-Up</Button>
+          </CardFooter>
+          <CardFooter>
+            <Button>Sign-In with LinkedIn</Button>
           </CardFooter>
         </Card>
       </TabsContent>
       <TabsContent value="password">
         <Card>
           <CardHeader>
-            <CardTitle>Password</CardTitle>
+            <CardTitle>Log-In</CardTitle>
             <CardDescription>
               Change your password here. After saving, you'll be logged out.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
             <div className="space-y-1">
-              <Label htmlFor="current">Current password</Label>
-              <Input id="current" type="password" />
+              <Label htmlFor="current">Email</Label>
+              <Input id="current" type="email" />
             </div>
             <div className="space-y-1">
-              <Label htmlFor="new">New password</Label>
+              <Label htmlFor="new">Password</Label>
               <Input id="new" type="password" />
             </div>
           </CardContent>
           <CardFooter>
-            <Button>Save password</Button>
+            <Button>Sign-In</Button>
+          </CardFooter>
+          <CardFooter>
+            <Button>Sign-In with LinkedIn</Button>
           </CardFooter>
         </Card>
       </TabsContent>
