@@ -7,6 +7,7 @@ import { MdMenu } from 'react-icons/md';
 import { IoMdClose } from 'react-icons/io';
 import { Button } from '../ui/button';
 import styles from './index.module.css';
+import { IoCloseSharp } from 'react-icons/io5';
 
 export const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -37,19 +38,21 @@ export const Navbar = () => {
         </Link>
       </div>
       <div className={styles.navbarRight}>
-        {navContent.map((content, index) => (
-          <Link
-            href={`/${content.toLowerCase().replace(/\s+/g, '')}`}
-            key={index}
-            className={
-              path === `/${content.toLowerCase().replace(/\s+/g, '')}`
-                ? styles.activeLink
-                : ''
-            }
-          >
-            {content}
-          </Link>
-        ))}
+        <div className="space-x-1 font-semibold">
+          {navContent.map((content, index) => (
+            <Link
+              href={`/${content.toLowerCase().replace(/\s+/g, '')}`}
+              key={index}
+              className={`${styles.navLink} ${
+                path === `/${content.toLowerCase().replace(/\s+/g, '')}`
+                  ? styles.activeLink
+                  : ''
+              }`}
+            >
+              {content}
+            </Link>
+          ))}
+        </div>
       </div>
       <div className={styles.navbarMobile}>
         <button
@@ -60,15 +63,21 @@ export const Navbar = () => {
         </button>
         {openMenu && (
           <div>
+            <div
+              className="font-semibold text-3xl cursor-pointer"
+              onClick={() => setOpenMenu(false)}
+            >
+              <IoCloseSharp />
+            </div>
             {navContent.map((content, index) => (
               <Link
                 href={`/${content.toLowerCase().replace(/\s+/g, '')}`}
                 key={index}
-                className={
+                className={`${styles.navLink} ${
                   path === `/${content.toLowerCase().replace(/\s+/g, '')}`
                     ? styles.activeLink
                     : ''
-                }
+                }`}
               >
                 {content}
               </Link>
