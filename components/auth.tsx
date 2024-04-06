@@ -18,7 +18,7 @@ import {
 
 export function Auth() {
   return (
-    <Tabs defaultValue="account" className="w-[400px]">
+    <Tabs defaultValue="account" className="w-[400px] mt-8">
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="account">Sign-Up</TabsTrigger>
         <TabsTrigger value="password">Log-In</TabsTrigger>
@@ -28,7 +28,7 @@ export function Auth() {
           <CardHeader>
             <CardTitle>Sign-Up</CardTitle>
             <CardDescription>
-              Make changes to your account here. Click save when you're done.
+              Create a new Account
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
@@ -58,7 +58,7 @@ export function Auth() {
           <CardHeader>
             <CardTitle>Log-In</CardTitle>
             <CardDescription>
-              Change your password here. After saving, you'll be logged out.
+              Log-In to your Account
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
