@@ -1,6 +1,6 @@
 import './index.css';
 
-export default function ResumeTemplate() {
+export default function Template1() {
     return (
       <div className="bg-white p-6 max-w-[21cm] mx-auto my-8 border rounded-md">
         {/* Set max width to 21cm for A4 size */}
