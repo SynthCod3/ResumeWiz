@@ -35,7 +35,7 @@ export const Navbar = () => {
       }}
     >
       <div className={styles.navbarLeft}>
-        <a href="/home">
+        <a href="/">
           {/* <img
             src="https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zNzNiYXRjaDQtNjIucG5n.png"
             alt="logo"
