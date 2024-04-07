@@ -1,5 +1,5 @@
-import { Editor } from '@/components/editor'
 import React from 'react'
+import { Editor } from './components/editor'
 
 
 const EditorPage = () => {

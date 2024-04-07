@@ -4,9 +4,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 5vw 20px;
+  padding: 15px 5vw 15px;
   z-index: 9990;
   backdrop-filter: blur(8px);
+  background-color: hsl(var(--accent)) !important;
   top: 0;
 }
 .navbarWrapper > div {
@@ -87,6 +88,28 @@
 }
 .navbarWrapper a {
   text-decoration: none;
+}
+
+.navLink {
+  position: relative;
+  display: inline-block;
+  padding: 5px 0; /* Adjust padding as needed */
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 5px; /* Thickness of the underline */
+  background-color: hsl(var(--primary)); /* Color of the underline */
+  transition: width 0.4s ease; /* Smooth transition for the underline */
+}
+
+.navLink:hover::after,
+.navLink:focus::after {
+  width: 100%;
 }
 
 @media screen and (max-width: 850px) {
