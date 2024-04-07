@@ -49,7 +49,6 @@ const SignUp = (props: Props) => {
       await signUpUser(data).then(() => {
         toast.success('Signup successfull');
         const searchParams = new URLSearchParams(window.location.search);
-        console.log(searchParams);
         const redirectUrl = searchParams.get('redirect');
         props.router.push(redirectUrl || '/');
       });
