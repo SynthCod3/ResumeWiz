@@ -1,0 +1,23 @@
+.a4-container {
+    width: 595px;
+    height: 842px;
+    margin: 0 auto;
+    padding: 24px;
+    font-size: calc(14px + 0.5vw);
+    aspect-ratio: 595 / 842; /* Aspect ratio of A4 size */
+}
+
+@media screen and (max-width: 768px) {
+    .a4-container {
+        width: calc(100vw - 48px);
+        height: calc((100vw - 48px) * 842 / 595); /* Calculate height based on aspect ratio */
+        padding: 24px;
+        font-size: calc(12px + 0.5vw);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .a4-container {
+        font-size: calc(10px + 0.5vw);
+    }
+}
