@@ -21,7 +21,7 @@ export default function Hero() {
               </p>
             </div>
             <Link
-              
+              className="mt-4"
               href="/templates"
             >
               <Button>Get Started</Button>
@@ -29,50 +29,7 @@ export default function Hero() {
           </div>
           <div className="w-full max-w-sm rounded-xl border border-gray-100 shadow-sm md:max-w-2xl lg:max-w-3xl xl:max-w-none dark:border-gray-800">
             <div className="grid w-full overflow-hidden rounded-xl aspect-video">
-              <img
-                alt="Resumes"
-                className="object-cover w-full h-[100%] transition-transform duration-300 cursor-pointer hover:scale-105"
-                height="225"
-                src="/hero1.svg"
-                style={{
-                  aspectRatio: "400/225",
-                  objectFit: "cover",
-                }}
-                width="400"
-              />
-              <img
-                alt="Resumes"
-                className="object-cover w-full h-[100%] transition-transform duration-300 cursor-pointer hover:scale-105"
-                height="225"
-                src="/hero2.svg"
-                style={{
-                  aspectRatio: "400/225",
-                  objectFit: "cover",
-                }}
-                width="400"
-              />
-              <img
-                alt="Resumes"
-                className="object-cover w-full h-[100%] transition-transform duration-300 cursor-pointer hover:scale-105"
-                height="225"
-                src="/hero1.svg"
-                style={{
-                  aspectRatio: "400/225",
-                  objectFit: "cover",
-                }}
-                width="400"
-              />
-              <img
-                alt="Resumes"
-                className="object-cover w-full h-[100%] transition-transform duration-300 cursor-pointer hover:scale-105"
-                height="225"
-                src="/hero2.svg"
-                style={{
-                  aspectRatio: "400/225",
-                  objectFit: "cover",
-                }}
-                width="400"
-              />
+              
               <img
                 alt="Resumes"
                 className="object-cover w-full h-[100%] transition-transform duration-300 cursor-pointer hover:scale-105"
