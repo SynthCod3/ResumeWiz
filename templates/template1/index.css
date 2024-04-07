@@ -1,0 +1,6 @@
+@media screen and (max-width: 768px) {
+    .max-w-[21cm] {
+      max-width: calc(100vw - 2rem); /* Adjust as necessary */
+    }
+  }
+  
