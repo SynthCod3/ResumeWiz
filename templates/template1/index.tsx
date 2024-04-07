@@ -2,20 +2,22 @@ import styles from './index.module.css';
 
 export default function Template1() {
   return (
-   <div className=" p-10 bg-white lg:overflow-hidden scale-50 md:scale-100 border" style={{ aspectRatio: '1 / 1.414' }}>
-  {/* Your content goes here */}
-
-      <div className=" p-4 space-y-6" id="resume">
+    <div
+      className="bg-white p-6 max-w-[21cm] mx-auto my-8 border rounded-md"
+      id="resume"
+    >
+      {/* Set max width to 21cm for A4 size */}
+      <div className="flex flex-col space-y-6">
         <div className="text-center">
-          <h1 className="text-2xl font-bold">Anne Y. Choi</h1>
-          <p className="text-xs">
+          <h1 className="text-3xl font-bold">Anne Y. Choi</h1>
+          <p className="text-sm">
             City, State ZIP | (555) 555-5555 | annechoi@email.com |
             linkedin.com/in/your-name-here
           </p>
         </div>
         <section>
-          <h2 className="font-bold text-base mb-2">CAREER SUMMARY</h2>
-          <p className="text-xs">
+          <h2 className="font-bold text-xl mb-2">CAREER SUMMARY</h2>
+          <p className="text-sm">
             Add a resume summary that highlights what you do, the types of
             companies you've worked with, and why you're great at your job.
             Typically summaries should be very short at the top level, but you
@@ -26,71 +28,26 @@ export default function Template1() {
           </p>
         </section>
         <section>
-          <h2 className="font-bold text-base mb-2">SKILLS AND STRENGTHS</h2>
-          <ul className="list-disc pl-3 text-xs space-y-1">
-            <li>
-              <strong>Skill 1:</strong>
-              List your most relevant hard skills, soft skills, and experience
-              for this job.
-            </li>
-            <li>
-              <strong>Skill 2:</strong>
-              Mention the skill (then briefly describe it).
-            </li>
-            <li>
-              <strong>Skill 3:</strong>
-              Refer to example (basic skill).
-            </li>
-            <li>
-              <strong>Self-starter:</strong>
-              Explain your self-starter expertise with x+ years of experience
-              and a perfect match for position name (detailed skill).
-            </li>
-            <li>
-              <strong>Skills:</strong>
-              Another example (skill category).
-            </li>
+          <h2 className="font-bold text-xl mb-2">SKILLS AND STRENGTHS</h2>
+          <ul className="list-disc pl-5 text-sm space-y-1">
+            {/* Skills and strengths list */}
           </ul>
         </section>
         <section>
-          <h2 className="font-bold text-base mb-2">
+          <h2 className="font-bold text-xl mb-2">
             PROFESSIONAL ACCOMPLISHMENTS
           </h2>
-          <ul className="list-disc pl-3 text-xs space-y-1">
-            <li>
-              <strong>Accomplishment 1:</strong>
-              Action verb (the result of an accomplishment) resulting in
-              (quantifiable outcomes).
-            </li>
-            <li>
-              <strong>Accomplishment 2:</strong>
-              Action verb (the result of an accomplishment) resulting in
-              (quantifiable outcomes).
-            </li>
-            <li>
-              <strong>Accomplishment 3:</strong>
-              Action verb (the result of an accomplishment) resulting in
-              (quantifiable outcomes).
-            </li>
-            <li>
-              <strong>Accomplishment 4:</strong>
-              Action verb (the result of an accomplishment) resulting in
-              (quantifiable outcomes).
-            </li>
+          <ul className="list-disc pl-5 text-sm space-y-1">
+            {/* Professional accomplishments list */}
           </ul>
         </section>
         <section>
-          <h2 className="font-bold text-base mb-2">WORK HISTORY</h2>
-          <ul className="list-none space-y-1 text-xs">
-            <li>
-              <strong>Company A:</strong>
-              Location, Job Title, (MM/YYYY) - Present
-            </li>
-          </ul>
+          <h2 className="font-bold text-xl mb-2">WORK HISTORY</h2>
+          <ul className="list-none space-y-1">{/* Work history list */}</ul>
         </section>
         <section>
-          <h2 className="font-bold text-base mb-2">EDUCATION</h2>
-          <p className="text-xs">
+          <h2 className="font-bold text-xl mb-2">EDUCATION</h2>
+          <p className="text-sm">
             Degree, Graduation Year (YYYY), College Name, Location
           </p>
         </section>
