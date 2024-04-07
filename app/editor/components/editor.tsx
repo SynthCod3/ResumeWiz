@@ -7,9 +7,19 @@
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import TestTemplate from '@/templates/testTemplate';
 import React, { useEffect } from 'react';
 import renderTemplate from '@/templates';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 export function Editor() {
   const [template, setTemplate] = React.useState(1);
@@ -18,6 +28,39 @@ export function Editor() {
     const templateId = searchParams.get('template');
     setTemplate(templateId ? parseInt(templateId) : 1);
   }, []);
+
+  const downloadAsImage = async () => {
+    const element = document.getElementById('resume'); // Ensure your resume template has this ID
+    if (element) {
+      const canvas = await html2canvas(element);
+      const image = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.href = image;
+      link.download = 'resume.png';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
+  const downloadAsPDF = async () => {
+    const element = document.getElementById('resume'); // Ensure your resume template has this ID
+    if (element) {
+      const doc = new jsPDF({
+        orientation: 'portrait',
+        unit: 'px',
+        format: [element.offsetWidth, element.offsetHeight],
+      });
+      doc.html(element, {
+        callback: function (doc) {
+          doc.save('resume.pdf');
+        },
+        x: 0,
+        y: 0,
+        width: element.offsetWidth,
+      });
+    }
+  };
 
   return (
     <div className="w-full max-w-90 px-4 mx-auto lg:grid lg:gap-4 lg:px-6 lg:grid-cols-2 mt-20">
@@ -75,7 +118,34 @@ export function Editor() {
           </div>
         </div>
       </div>
-      <div>{renderTemplate(template)}</div>
+      <div>
+        <Select
+          onValueChange={(value) => {
+            if (value === 'png') downloadAsImage();
+            if (value === 'pdf') downloadAsPDF();
+          }}
+        >
+          <Label>Download as :</Label>
+          <SelectTrigger
+            className="w-[180px] mb-3"
+            style={{
+              outline: 'none',
+              /* Optional: Add custom styles for focus state to maintain accessibility */
+              boxShadow: '0 0 0 1px rgba(0, 123, 255, 0.1)', // Example custom focus style
+            }}
+          >
+            <SelectValue placeholder="Download" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Format</SelectLabel>
+              <SelectItem value="png">PNG</SelectItem>
+              <SelectItem value="pdf">PDF</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        {renderTemplate(template)}
+      </div>
     </div>
   );
 }
