@@ -4,9 +4,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 5vw 20px;
+  padding: 15px 5vw 15px;
   z-index: 9990;
   backdrop-filter: blur(8px);
+  background-color: hsl(var(--accent)) !important;
   top: 0;
 }
 .navbarWrapper > div {
