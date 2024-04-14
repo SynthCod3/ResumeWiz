@@ -3,6 +3,7 @@ import styles from './index.module.css';
 
 export default function Template1() {
   const name = useEditorStore((state) => state.name);
+  const description = useEditorStore((state) => state.description);
   const contact = useEditorStore((state) => state.contact);
   return (
     <div
@@ -21,13 +22,7 @@ export default function Template1() {
         <section>
           <h2 className="font-bold text-xl mb-2">CAREER SUMMARY</h2>
           <p className="text-sm">
-            Add a resume summary that highlights what you do, the types of
-            companies you've worked with, and why you're great at your job.
-            Typically summaries should be very short at the top level, but you
-            can go a little longer if necessary for your industry. Consider
-            including expected terms, specializations, or areas of interest.
-            Ensure that your summary perfectly aligns with what is asked for in
-            the job description.
+            {description}
           </p>
         </section>
         <section>

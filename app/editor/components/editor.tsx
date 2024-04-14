@@ -24,6 +24,7 @@ import { useEditorStore } from '@/utils/stores';
 
 export function Editor() {
   const setName = useEditorStore((state) => state.setName);
+  const setDescription = useEditorStore((state) => state.setDescription);
   const setContact = useEditorStore((state) => state.setContact);
   const contact = useEditorStore((state) => state.contact);
 
@@ -97,6 +98,9 @@ export function Editor() {
               className="min-h-[100px]"
               id="summary"
               placeholder="Enter your summary"
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
             />
           </div>
         </div>
