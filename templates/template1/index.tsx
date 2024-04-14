@@ -5,6 +5,7 @@ export default function Template1() {
   const name = useEditorStore((state) => state.name);
   const description = useEditorStore((state) => state.description);
   const contact = useEditorStore((state) => state.contact);
+  const skills = useEditorStore((state) => state.skills);
   return (
     <div
       className="bg-white p-6 max-w-[21cm] mx-auto my-8 border rounded-md"
@@ -21,14 +22,17 @@ export default function Template1() {
         </div>
         <section>
           <h2 className="font-bold text-xl mb-2">CAREER SUMMARY</h2>
-          <p className="text-sm">
-            {description}
-          </p>
+          <p className="text-sm">{description}</p>
         </section>
         <section>
           <h2 className="font-bold text-xl mb-2">SKILLS AND STRENGTHS</h2>
-          <ul className="list-disc pl-5 text-sm space-y-1">
-            {/* Skills and strengths list */}
+          <ul className="flex flex-row pl-5 text-sm">
+            {skills.slice(0, 1).map((skill) => (
+              <div>{skill}&nbsp;</div>
+            ))}
+            {skills.slice(1).map((skill) => (
+              <div>&nbsp;|&nbsp;{skill}</div>
+            ))}
           </ul>
         </section>
         <section>

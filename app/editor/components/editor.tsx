@@ -21,12 +21,16 @@ import {
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { useEditorStore } from '@/utils/stores';
+import { Button } from '@/components/ui/button';
 
 export function Editor() {
   const setName = useEditorStore((state) => state.setName);
   const setDescription = useEditorStore((state) => state.setDescription);
   const setContact = useEditorStore((state) => state.setContact);
   const contact = useEditorStore((state) => state.contact);
+  const setSkills = useEditorStore((state) => state.setSkills);
+  const skills: string[] = useEditorStore((state) => state.skills);
+  const [newSkill, setNewSkill] = React.useState('');
 
   const [template, setTemplate] = React.useState(1);
   useEffect(() => {
@@ -74,15 +78,23 @@ export function Editor() {
         <div className="p-4 space-y-4 lg:p-10">
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
-            <Input id="name" placeholder="Enter your name" onChange={(e) => {
-              setName(e.target.value);
-            }} />
+            <Input
+              id="name"
+              placeholder="Enter your name"
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="name">Address</Label>
-            <Input id="name" placeholder="Enter your address" onChange={(e) => {
-              setContact({...contact, address: e.target.value});
-            }} />
+            <Input
+              id="name"
+              placeholder="Enter your address"
+              onChange={(e) => {
+                setContact({ ...contact, address: e.target.value });
+              }}
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="contact-information">Contact Information</Label>
@@ -125,11 +137,36 @@ export function Editor() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="skills">Skills</Label>
-                <Textarea
-                  className="min-h-[100px]"
+                <Input
                   id="skills"
-                  placeholder="Enter your skills"
+                  placeholder="Enter a skill"
+                  onChange={(e) => {
+                    setNewSkill(e.target.value);
+                  }}
+                  value={newSkill}
                 />
+                <Button
+                  onClick={() => {
+                    if (!newSkill) return;
+                    setSkills([...skills, newSkill]);
+                    setNewSkill('');
+                  }}
+                >
+                  Add Skill
+                </Button>
+                <div>
+                  {skills.map((skill) => (
+                    <div
+                      className="inline-block mr-2"
+                      key={skill}
+                      onClick={() =>
+                        setSkills(skills.filter((s) => s !== skill))
+                      }
+                    >
+                      {skill}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
