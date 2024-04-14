@@ -15,8 +15,8 @@ export default function Template1() {
         <div className="text-center">
           <h1 className="text-3xl font-bold">{name}</h1>
           <p className="text-sm">
-            {contact.address} | (555) 555-5555 | annechoi@email.com |
-            linkedin.com/in/your-name-here
+            {contact.address} |{contact.phone}| {contact.email} |
+            {contact.linkedin}
           </p>
         </div>
         <section>
