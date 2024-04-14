@@ -20,8 +20,12 @@ import {
 } from '@/components/ui/select';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { useEditorStore } from '@/utils/stores';
 
 export function Editor() {
+  const setName = useEditorStore((state) => state.setName);
+
+
   const [template, setTemplate] = React.useState(1);
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -68,8 +72,16 @@ export function Editor() {
         <div className="p-4 space-y-4 lg:p-10">
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
-            <Input id="name" placeholder="Enter your name" />
+            <Input id="name" placeholder="Enter your name" onChange={(e) => {
+              setName(e.target.value);
+            }} />
           </div>
+          {/* <div className="space-y-2">
+            <Label htmlFor="name">Address</Label>
+            <Input id="name" placeholder="Enter your address" onChange={(e) => {
+              setResume({ ...resume, contact.address: e.target.value });
+            }} />
+          </div> */}
           <div className="space-y-2">
             <Label htmlFor="contact-information">Contact Information</Label>
             <Textarea

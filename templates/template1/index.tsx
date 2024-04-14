@@ -1,6 +1,8 @@
+import { useEditorStore } from '@/utils/stores';
 import styles from './index.module.css';
 
 export default function Template1() {
+  const name = useEditorStore((state) => state.name);
   return (
     <div
       className="bg-white p-6 max-w-[21cm] mx-auto my-8 border rounded-md"
@@ -9,7 +11,7 @@ export default function Template1() {
       {/* Set max width to 21cm for A4 size */}
       <div className="flex flex-col space-y-6">
         <div className="text-center">
-          <h1 className="text-3xl font-bold">Anne Y. Choi</h1>
+          <h1 className="text-3xl font-bold">{name}</h1>
           <p className="text-sm">
             City, State ZIP | (555) 555-5555 | annechoi@email.com |
             linkedin.com/in/your-name-here
