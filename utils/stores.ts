@@ -33,7 +33,7 @@ export const useEditorStore = create<EditorState>((set) => ({
   contact: {
     email: '',
     phone: '',
-    address: '',
+    address: 'City, State ZIP',
     linkedin: '',
     github: '',
     twitter: '',

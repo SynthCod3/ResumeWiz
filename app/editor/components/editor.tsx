@@ -24,7 +24,8 @@ import { useEditorStore } from '@/utils/stores';
 
 export function Editor() {
   const setName = useEditorStore((state) => state.setName);
-
+  const setContact = useEditorStore((state) => state.setContact);
+  const contact = useEditorStore((state) => state.contact);
 
   const [template, setTemplate] = React.useState(1);
   useEffect(() => {
@@ -76,12 +77,12 @@ export function Editor() {
               setName(e.target.value);
             }} />
           </div>
-          {/* <div className="space-y-2">
+          <div className="space-y-2">
             <Label htmlFor="name">Address</Label>
             <Input id="name" placeholder="Enter your address" onChange={(e) => {
-              setResume({ ...resume, contact.address: e.target.value });
+              setContact({...contact, address: e.target.value});
             }} />
-          </div> */}
+          </div>
           <div className="space-y-2">
             <Label htmlFor="contact-information">Contact Information</Label>
             <Textarea
