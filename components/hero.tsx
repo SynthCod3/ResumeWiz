@@ -1,3 +1,5 @@
+//hero
+
 /**
  * v0 by Vercel.
  * @see https://v0.dev/t/2Ss9L5AYVyM
@@ -48,4 +50,3 @@ export default function Hero() {
     </section>
   )
 }
-

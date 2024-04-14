@@ -1,14 +1,8 @@
-import { Profile } from "@/components/profile"
-import { Templates } from "../templates/components/templates"
-
-
-const page = () => {
+import {Profile} from '../../components/profile'
+function ProfilePage() {
   return (
-    <div>
-        <Profile/>
-        <Templates/>
-    </div>
+    <div><Profile/></div>
   )
 }
 
-export default page
+export default ProfilePage
