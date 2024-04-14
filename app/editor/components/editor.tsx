@@ -78,6 +78,7 @@ export function Editor() {
               setName(e.target.value);
             }} />
           </div>
+          
           <div className="space-y-2">
             <Label htmlFor="name">Address</Label>
             <Input id="name" placeholder="Enter your address" onChange={(e) => {
@@ -85,12 +86,22 @@ export function Editor() {
             }} />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="contact-information">Contact Information</Label>
-            <Textarea
-              className="min-h-[100px]"
-              id="contact-information"
-              placeholder="Enter your contact information"
-            />
+            <Label htmlFor="name">Email</Label>
+            <Input id="name" placeholder="Enter your address" onChange={(e) => {
+              setContact({...contact, email: e.target.value});
+            }} />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="name">Phone</Label>
+            <Input id="name" placeholder="Enter your address" onChange={(e) => {
+              setContact({...contact, phone: e.target.value});
+            }} />
+            </div>
+          <div className="space-y-2">
+            <Label htmlFor="name">LinkedIn</Label>
+            <Input id="name" placeholder="Enter your address" onChange={(e) => {
+              setContact({...contact, linkedin: e.target.value});
+            }} />
           </div>
           <div className="space-y-2">
             <Label htmlFor="summary">Summary</Label>
@@ -165,4 +176,4 @@ export function Editor() {
       </div>
     </div>
   );
-}
+};
