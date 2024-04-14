@@ -7,6 +7,7 @@ export default function Template1() {
   const contact = useEditorStore((state) => state.contact);
   const skills = useEditorStore((state) => state.skills);
   const experience = useEditorStore((state) => state.experience);
+  const education = useEditorStore((state) => state.education);
   return (
     <div
       className="bg-white p-6 max-w-[21cm] mx-auto my-8 border rounded-md"
@@ -62,7 +63,8 @@ export default function Template1() {
         <section>
           <h2 className="font-bold text-xl mb-2">EDUCATION</h2>
           <p className="text-sm">
-            Degree, Graduation Year (YYYY), College Name, Location
+           {education.map((edu) => (
+            <div>{edu.course} |({edu.endingDate}) |{edu.institution}| ({edu.university})| {edu.score} </div>)) }
           </p>
         </section>
       </div>
