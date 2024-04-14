@@ -90,7 +90,7 @@ export function Editor() {
           <div className="space-y-2">
             <Label htmlFor="name">Address</Label>
             <Input
-              id="name"
+              id="address"
               placeholder="Enter your address"
               onChange={(e) => {
                 setContact({ ...contact, address: e.target.value });
@@ -99,19 +99,19 @@ export function Editor() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="name">Email</Label>
-            <Input id="name" placeholder="Enter your address" onChange={(e) => {
+            <Input id="email" placeholder="Enter your email" onChange={(e) => {
               setContact({...contact, email: e.target.value});
             }} />
           </div>
           <div className="space-y-2">
             <Label htmlFor="name">Phone</Label>
-            <Input id="name" placeholder="Enter your address" onChange={(e) => {
+            <Input id="phone" placeholder="Enter your phone" onChange={(e) => {
               setContact({...contact, phone: e.target.value});
             }} />
             </div>
           <div className="space-y-2">
             <Label htmlFor="name">LinkedIn</Label>
-            <Input id="name" placeholder="Enter your address" onChange={(e) => {
+            <Input id="linkedin" placeholder="Enter your linkedin" onChange={(e) => {
               setContact({...contact, linkedin: e.target.value});
             }} />
           </div>
