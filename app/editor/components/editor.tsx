@@ -31,6 +31,16 @@ export function Editor() {
   const setSkills = useEditorStore((state) => state.setSkills);
   const skills: string[] = useEditorStore((state) => state.skills);
   const [newSkill, setNewSkill] = React.useState('');
+  const experience = useEditorStore((state) => state.experience);
+  const setExperience = useEditorStore((state) => state.setExperience);
+  const [newExperience, setNewExperience] = React.useState<Experience>({
+    title: '',
+    index: experience.length + 1,
+    company: '',
+    startingDate: '',
+    endingDate: '',
+    description: '',
+  });
 
   const [template, setTemplate] = React.useState(1);
   useEffect(() => {
@@ -86,7 +96,7 @@ export function Editor() {
               }}
             />
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="name">Address</Label>
             <Input
@@ -99,21 +109,33 @@ export function Editor() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="name">Email</Label>
-            <Input id="email" placeholder="Enter your email" onChange={(e) => {
-              setContact({...contact, email: e.target.value});
-            }} />
+            <Input
+              id="email"
+              placeholder="Enter your email"
+              onChange={(e) => {
+                setContact({ ...contact, email: e.target.value });
+              }}
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="name">Phone</Label>
-            <Input id="phone" placeholder="Enter your phone" onChange={(e) => {
-              setContact({...contact, phone: e.target.value});
-            }} />
-            </div>
+            <Input
+              id="phone"
+              placeholder="Enter your phone"
+              onChange={(e) => {
+                setContact({ ...contact, phone: e.target.value });
+              }}
+            />
+          </div>
           <div className="space-y-2">
             <Label htmlFor="name">LinkedIn</Label>
-            <Input id="linkedin" placeholder="Enter your linkedin" onChange={(e) => {
-              setContact({...contact, linkedin: e.target.value});
-            }} />
+            <Input
+              id="linkedin"
+              placeholder="Enter your linkedin"
+              onChange={(e) => {
+                setContact({ ...contact, linkedin: e.target.value });
+              }}
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="summary">Summary</Label>
@@ -140,11 +162,93 @@ export function Editor() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="experience">Work Experience</Label>
-                <Textarea
-                  className="min-h-[100px]"
-                  id="experience"
-                  placeholder="Enter your work experience"
-                />
+                <div>
+                  <Input
+                    placeholder="Enter title"
+                    onChange={(e) => {
+                      setNewExperience({
+                        ...newExperience,
+                        title: e.target.value,
+                      });
+                    }}
+                    value={newExperience.title}
+                  />
+                  <Input
+                    placeholder="Enter Company"
+                    onChange={(e) => {
+                      setNewExperience({
+                        ...newExperience,
+                        company: e.target.value,
+                      });
+                    }}
+                    value={newExperience.company}
+                  />
+                  <Input
+                    placeholder="Enter starting date"
+                    onChange={(e) => {
+                      setNewExperience({
+                        ...newExperience,
+                        startingDate: e.target.value,
+                      });
+                    }}
+                    value={newExperience.startingDate}
+                  />
+                  <Input
+                    placeholder="Enter ending date"
+                    onChange={(e) => {
+                      setNewExperience({
+                        ...newExperience,
+                        endingDate: e.target.value,
+                      });
+                    }}
+                    value={newExperience.endingDate}
+                  />
+                  <Textarea
+                    className="min-h-[100px]"
+                    id="experience"
+                    placeholder="Enter your experience"
+                    onChange={(e) => {
+                      setNewExperience({
+                        ...newExperience,
+                        description: e.target.value,
+                      });
+                    }}
+                    value={newExperience.description}
+                  />
+                  <Button
+                    onClick={() => {
+                      if (!newExperience.title) return;
+                      setExperience([...experience, newExperience]);
+                      setNewExperience({
+                        title: '',
+                        company: '',
+                        startingDate: '',
+                        endingDate: '',
+                        description: '',
+                        index: newExperience.index + 1,
+                      });
+                    }}
+                  >
+                    Add Experience
+                  </Button>
+                </div>
+                <div>
+                  {experience.map((exp) => (
+                    <div
+                      className="inline-block mr-2"
+                      key={exp.index}
+                      onClick={() => {
+                        setExperience(
+                          experience.filter(
+                            (e: Experience) => e.index !== exp.index,
+                          ),
+                        );
+                      }}
+                    >
+                      {exp.title}
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="skills">Skills</Label>
@@ -213,4 +317,4 @@ export function Editor() {
       </div>
     </div>
   );
-};
+}

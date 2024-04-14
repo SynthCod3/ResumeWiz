@@ -1,4 +1,5 @@
 interface Experience {
+  index: number;
   title: string;
   company: string;
   startingDate: string;
