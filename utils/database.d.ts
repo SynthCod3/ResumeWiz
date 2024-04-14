@@ -8,6 +8,7 @@ interface Experience {
 }
 
 interface Education {
+  index: number;
   course: string;
   institution: string;
   university: string;
