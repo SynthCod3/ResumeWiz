@@ -41,6 +41,18 @@ export function Editor() {
     endingDate: '',
     description: '',
   });
+  const education = useEditorStore((state) => state.education);
+  const setEducation = useEditorStore((state) => state.setEducation);
+  const [newEducation, setNewEducation] = React.useState<Education>({
+    course: '',
+    index: education.length + 1,
+    university: '',
+    institution: '',
+    score: '',
+    startingDate: '',
+    endingDate: '',
+  });
+  
 
   const [template, setTemplate] = React.useState(1);
   useEffect(() => {
@@ -154,11 +166,90 @@ export function Editor() {
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="education">Education</Label>
-                <Textarea
-                  className="min-h-[100px]"
-                  id="education"
-                  placeholder="Enter your education"
+                <Input
+                  className="min-h-[50px]"
+                  placeholder="Enter your course"
+                  onChange={(e) => {
+                    setNewEducation({
+                      ...newEducation,
+                      course: e.target.value,
+                    });
+                  }}
                 />
+                <Input
+                  className="min-h-[50px]"
+                  placeholder="Enter your university"
+                  onChange={(e) => {
+                    setNewEducation({
+                      ...newEducation,
+                      university: e.target.value,
+                    });
+                  }}
+                />
+                <Input
+                  className="min-h-[50px]"
+                  placeholder="Enter your institution"
+                  onChange={(e) => {
+                    setNewEducation({
+                      ...newEducation,
+                      institution: e.target.value,
+                    });
+                  }}
+                />
+                <Input
+                  className="min-h-[50px]"
+                  placeholder="Enter your score"
+                  onChange={(e) => {
+                    setNewEducation({
+                      ...newEducation,
+                      score: e.target.value,
+                    });
+                  }}
+                />
+                <Input
+                  className="min-h-[50px]"
+                  placeholder="Enter your ending year"
+                  onChange={(e) => {
+                    setNewEducation({
+                      ...newEducation,
+                      endingDate: e.target.value,
+                    });
+                  }}
+                />
+                <Button
+                  onClick={() => {
+                    setEducation([...education, newEducation]);
+                    setNewEducation({
+                      course: '',
+                      index: education.length + 1,
+                      university: '',
+                      institution: '',
+                      score: '',
+                      startingDate: '',
+                      endingDate: '',
+                    });
+                  }}
+                >
+                  Add Education
+                </Button>
+                <div>
+                  {education.map((edu) => (
+                    <div
+                      className="inline-block mr-2"
+                      key={edu.index}
+                      onClick={() => {
+                        setEducation(
+                          education.filter(
+                            (e: Education) => e.index !== edu.index,
+                          ),
+                        );
+                      }}
+                    >
+                      {edu.course}
+                    </div>
+                  ))}
+                </div>
+
               </div>
               <div className="space-y-2">
                 <Label htmlFor="experience">Work Experience</Label>
