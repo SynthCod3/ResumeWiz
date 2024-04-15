@@ -29,22 +29,22 @@ export const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    fetchUserSession()
-  }, [userSession])
-  
+    fetchUserSession();
+  }, [userSession]);
+
   const fetchUserSession = async () => {
     const { data, error } = await supabase.auth.getSession();
     if (error) {
       console.log('Error fetching user session:', error);
-      setUserSession(false)
-      return false
+      setUserSession(false);
+      return false;
     } else if (data.session?.access_token) {
       console.log('User session:', data.session);
-      setUserSession(true)
-      return true
+      setUserSession(true);
+      return true;
     }
-  }
-  
+  };
+
   return (
     <div
       className={styles.navbarWrapper}
@@ -102,27 +102,37 @@ export const Navbar = () => {
                 {content}
               </Link>
             ))}
-            <div className="w-full flex justify-center align-center">
-              <Link href="/auth">
-                <Button className="w-80">Sign Up</Button>
-              </Link>
-            </div>
+            {!userSession ? (
+              <div className="w-full flex justify-center align-center">
+                <Link href="/auth">
+                  <Button>Sign Up</Button>
+                </Link>
+              </div>
+            ) : (
+              <div>
+                <Link href="/profile">
+                  <Button>Profile</Button>
+                </Link>
+              </div>
+            )}
           </div>
         )}
       </div>
-      {!userSession ? (
-        <div className={styles.EndButton}>
-          <Link href="/auth">
-            <Button>Sign Up</Button>
-          </Link>
-        </div>
-      ) : (
-        <div>
-          <Link href="/profile">
-            <Button>Profile</Button>
-          </Link>
-        </div>
-      )}
+      <div className="hidden md:flex">
+        {!userSession ? (
+          <div className={styles.EndButton}>
+            <Link href="/auth">
+              <Button>Sign Up</Button>
+            </Link>
+          </div>
+        ) : (
+          <div>
+            <Link href="/profile">
+              <Button>Profile</Button>
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

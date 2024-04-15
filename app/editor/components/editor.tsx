@@ -23,6 +23,8 @@ import jsPDF from 'jspdf';
 import { useEditorStore } from '@/utils/stores';
 import { Button } from '@/components/ui/button';
 import { llm_inference } from '@/app/llm/services/api';
+import { supabase } from '@/utils/supabase';
+import { toast } from 'sonner';
 
 export function Editor() {
   const setName = useEditorStore((state) => state.setName);
@@ -99,7 +101,7 @@ export function Editor() {
   const resumeDetails = {
     name: name,
     description: description,
-    constact: contact,
+    contact: contact,
     skills: skills,
     experience: experience,
     education: education,
@@ -150,8 +152,24 @@ export function Editor() {
     }
   };
 
-
-
+  const handleSave = async () => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    console.log("calling save")
+    const { data, error } = await supabase
+      .from('users')
+      .update({ data: resumeDetails })
+      .eq('id', user?.id)
+      .select();
+      if(error){
+        toast.error(error.message)
+        throw error
+      } else if (data) {
+        toast.success('Resume saved successfully!')
+        return data
+      }
+  };
 
   return (
     <div className="w-full max-w-90 px-4 mx-auto lg:grid lg:gap-4 lg:px-6 lg:grid-cols-2 mt-20">
@@ -162,6 +180,7 @@ export function Editor() {
             <Input
               id="name"
               placeholder="Enter your name"
+              value={name}
               onChange={(e) => {
                 setName(e.target.value);
               }}
@@ -173,6 +192,7 @@ export function Editor() {
             <Input
               id="address"
               placeholder="Enter your address"
+              value={contact.address}
               onChange={(e) => {
                 setContact({ ...contact, address: e.target.value });
               }}
@@ -182,6 +202,7 @@ export function Editor() {
             <Label htmlFor="name">Email</Label>
             <Input
               id="email"
+              value={contact.email}
               placeholder="Enter your email"
               onChange={(e) => {
                 setContact({ ...contact, email: e.target.value });
@@ -192,6 +213,7 @@ export function Editor() {
             <Label htmlFor="name">Phone</Label>
             <Input
               id="phone"
+              value={contact.phone}
               placeholder="Enter your phone"
               onChange={(e) => {
                 setContact({ ...contact, phone: e.target.value });
@@ -202,6 +224,7 @@ export function Editor() {
             <Label htmlFor="name">LinkedIn</Label>
             <Input
               id="linkedin"
+              value={contact.linkedin}
               placeholder="Enter your linkedin"
               onChange={(e) => {
                 setContact({ ...contact, linkedin: e.target.value });
@@ -214,6 +237,7 @@ export function Editor() {
               className="min-h-[100px]"
               id="summary"
               placeholder="Enter your summary"
+              value={description}
               onChange={(e) => {
                 setDescription(e.target.value);
               }}
@@ -269,17 +293,17 @@ export function Editor() {
                   }}
                   value={newEducation.score}
                 />
-                  <Input
-                    className="min-h-[50px]"
-                    placeholder="Enter your starting year"
-                    onChange={(e) => {
-                      setNewEducation({
-                        ...newEducation,
-                        startingDate: e.target.value,
-                      });
-                    }}
-                    value={newEducation.startingDate}
-                  />
+                <Input
+                  className="min-h-[50px]"
+                  placeholder="Enter your starting year"
+                  onChange={(e) => {
+                    setNewEducation({
+                      ...newEducation,
+                      startingDate: e.target.value,
+                    });
+                  }}
+                  value={newEducation.startingDate}
+                />
                 <Input
                   className="min-h-[50px]"
                   placeholder="Enter your ending year"
@@ -487,6 +511,15 @@ export function Editor() {
               }}
             >
               ATS & Resume Feedback
+            </Button>
+          </div>
+          <div className="px-2">
+            <Button
+              onClick={() => {
+                handleSave();
+              }}
+            >
+              Save
             </Button>
           </div>
         </div>
