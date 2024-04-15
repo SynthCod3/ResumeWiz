@@ -3,6 +3,14 @@ import styles from './index.module.css';
 import { useEditorStore } from '@/utils/stores';
 
 const TestTemplate = () => {
+
+  const name = useEditorStore((state) => state.name);
+  const description = useEditorStore((state) => state.description);
+  const contact = useEditorStore((state) => state.contact);
+  const skills = useEditorStore((state) => state.skills);
+  const experience = useEditorStore((state) => state.experience);
+  const education = useEditorStore((state) => state.education);
+
   const name = useEditorStore((state) => state.name);
   const description = useEditorStore((state) => state.description);
   const contact = useEditorStore((state) => state.contact);
@@ -30,9 +38,11 @@ const TestTemplate = () => {
         </div>
         <div>
           <h2 className="">Education</h2>
+            {education.map((edu) => (
           <p className="">
-            B.S. in Computer Science - University of Excellence (2010-2014)
-          </p>
+              <div>{edu.course} |({edu.endingDate}) |{edu.institution}| ({edu.university})| {edu.score} </div>
+          </p>)) }
+         
         </div>
         <div>
           <h2 className="">Work Experience</h2>
@@ -54,12 +64,11 @@ const TestTemplate = () => {
         </div>
         <div>
           <h2 className="">Skills</h2>
+
           <ul className="">
-            <li>JavaScript</li>
-            <li>React.js</li>
-            <li>Node.js</li>
-            <li>HTML/CSS</li>
-            <li>Agile Methodology</li>
+            {skills.map((skill) => (
+              <li>{skill}</li>
+            ))}
           </ul>
         </div>
       </div>
