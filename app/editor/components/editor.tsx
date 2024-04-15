@@ -108,7 +108,7 @@ export function Editor() {
   You are a strict HR manager reviewing a job applicant's resume. Provide feedback on the resume and calculate an ATS score.
   
   Resume Details:
-  ${JSON.stringify(resumeDetails)}
+  ${JSON.stringify(resumeDetails)}  
   
   Feedback:
   1. **Format**: Ensure the resume follows a standard format with clear sections (e.g., Contact Information, Summary/Objective, Work Experience, Education).
@@ -129,12 +129,29 @@ export function Editor() {
 
   const fetchData = async () => {
     try {
-      const feedback = await llm_inference(prompt);
-      console.log('Feedback:', feedback);
+      const feedbackString = await llm_inference(prompt);
+
+      // Extract JSON data from the feedbackString
+      const startIndex = feedbackString.indexOf('{'); // Find the index of the first '{'
+      const endIndex = feedbackString.lastIndexOf('}'); // Find the index of the last '}'
+      const jsonData = feedbackString.substring(startIndex, endIndex + 1); // Extract the JSON data
+
+      // Parse the JSON data into an object
+      const feedback = JSON.parse(jsonData);
+
+      // Extract suggestions and ATS score
+      const { suggestions, ATS_score } = feedback;
+
+      // Now you can use the suggestions and ATS_score variables as needed
+      console.log('Suggestions:', suggestions);
+      console.log('ATS Score:', ATS_score);
     } catch (error) {
       console.error('Error fetching resume feedback:', error);
     }
   };
+
+
+
 
   return (
     <div className="w-full max-w-90 px-4 mx-auto lg:grid lg:gap-4 lg:px-6 lg:grid-cols-2 mt-20">

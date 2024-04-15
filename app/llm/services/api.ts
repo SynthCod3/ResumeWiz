@@ -9,7 +9,7 @@ interface ResumeFeedback {
   ATS_score: number;
 }
 
-export async function llm_inference(resumeDetails: string): Promise<ResumeFeedback> {
+export async function llm_inference(resumeDetails: string) {
   const config: Config = {
     provider: 'together', // Update this as per your config
     model: 'mixtral', // Update this as per your config
@@ -36,9 +36,8 @@ export async function llm_inference(resumeDetails: string): Promise<ResumeFeedba
     });
 
     if (response.ok) {
-      const content: { output: { choices: [{ text: string }] } } = await response.json();
-      const output: ResumeFeedback = JSON.parse(content.output.choices[0].text);
-      return output;
+      const content = await response.json();
+      return content.output.choices[0].text;
     } else {
       throw new Error(`Request failed with status code ${response.status}`);
     }
