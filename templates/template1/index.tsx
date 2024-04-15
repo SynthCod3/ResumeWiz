@@ -64,7 +64,11 @@ export default function Template1() {
           <h2 className="font-bold text-xl mb-2">EDUCATION</h2>
           <p className="text-sm">
            {education.map((edu) => (
-            <div>{edu.course} |({edu.endingDate}) |{edu.institution}| ({edu.university})| {edu.score} </div>)) }
+            <>
+            <div>{edu.course}  |{edu.institution}| ({edu.university})|({edu.startingDate}) - ({edu.endingDate}) </div>
+            <p>{edu.score} </p>
+            </>
+            )) }
           </p>
         </section>
       </div>
