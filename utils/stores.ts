@@ -18,7 +18,7 @@ type EditorState = {
 };
 
 export const useEditorStore = create<EditorState>((set) => ({
-  name: '',
+  name: 'Jane Doe',
   setName: (name) => set({ name }),
   skills: [],
   setSkills: (skills) => set({ skills }),

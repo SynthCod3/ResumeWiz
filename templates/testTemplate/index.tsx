@@ -13,13 +13,13 @@ const TestTemplate = () => {
 
   return (
     <div className={styles.Wrapper} style={{ aspectRatio: '1 / 1.414' }}>
-      <div className="" id="resume">
-        <div className="">
-          <h1>{name}</h1>
-          <h2></h2>
+      <div id="resume" className={styles.ResumeContainer}>
+        <div>
+          <h1 className={styles.heading}>{name}</h1>
+          <h2>Software Engineer</h2>
         </div>
-        <div className="">
-          <h2 className="">Contact Information</h2>
+        <div>
+          <h2>Contact Information</h2>
           <div className="">
             <p>Email: {contact.email}</p>
             <p>Phone: {contact.phone}</p>
@@ -28,9 +28,7 @@ const TestTemplate = () => {
         </div>
         <div>
           <h2 className="">Summary</h2>
-          <p className="">
-            {description}
-          </p>
+          <p className="">{description}</p>
         </div>
         <div>
           <h2 className="">Education</h2>
@@ -46,11 +44,21 @@ const TestTemplate = () => {
         </div>
         <div>
           <h2 className="">Work Experience</h2>
-            {experience.map((exp) => (
-          <p className="">
-              <div>{exp.company} | ({exp.endingDate}) | {exp.title} | {exp.description} </div>
-          </p>
-            ))}
+          {experience.length > 0 ? (
+            experience.map((exp) => (
+              <p className="">
+                <b>{exp.title}</b> - {exp.company} ({exp.startingDate}-
+                {exp.endingDate})<p>{exp.description}</p>
+              </p>
+            ))
+          ) : (
+            <p className="">
+              Software Engineer - Tech Innovators Inc. (2014-2016)
+              <br />- Led the development of a cutting-edge e-commerce platform
+              <br />- Collaborated with cross-functional teams to deliver
+              high-quality software solutions
+            </p>
+          )}
         </div>
         <div>
           <h2 className="">Skills</h2>
