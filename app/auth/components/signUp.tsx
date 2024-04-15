@@ -12,6 +12,7 @@ import { supabase } from '@/utils/supabase';
 import { toast } from 'sonner';
 import { NextRouter } from 'next/router';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { useEditorStore } from '@/utils/stores';
 
 const schema = z
   .object({
@@ -33,6 +34,7 @@ type Props = {
 };
 
 const SignUp = (props: Props) => {
+  const toggleRefresh = useEditorStore((state) => state.toggleRefresh);
   const {
     register,
     handleSubmit,
@@ -50,6 +52,7 @@ const SignUp = (props: Props) => {
         toast.success('Signup successfull');
         const searchParams = new URLSearchParams(window.location.search);
         const redirectUrl = searchParams.get('redirect');
+        toggleRefresh();
         props.router.push(redirectUrl || '/');
       });
     } catch (error) {

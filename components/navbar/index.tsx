@@ -10,6 +10,7 @@ import styles from './index.module.css';
 import { IoCloseSharp } from 'react-icons/io5';
 import { supabase } from '@/utils/supabase';
 import { toast } from 'sonner';
+import { useEditorStore } from '@/utils/stores';
 
 export const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -18,6 +19,7 @@ export const Navbar = () => {
   const path = usePathname();
   const navContent = ['Templates', 'About Us'];
   const [userSession, setUserSession] = useState(false);
+  const refresh = useEditorStore((state) => state.refresh);
 
   useEffect(() => {
     const changeNavBg = () => {
@@ -30,7 +32,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     fetchUserSession();
-  }, [userSession]);
+  }, [userSession, refresh]);
 
   const fetchUserSession = async () => {
     const { data, error } = await supabase.auth.getSession();

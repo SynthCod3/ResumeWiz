@@ -33,3 +33,17 @@ interface Contact {
   twitter?: string;
   portfolio?: string;
 }
+
+interface ProfileData {
+  name: string;
+  data: {
+    skills: string[];
+    experience: Experience[];
+    education: Education[];
+    projects: Projects[];
+    description: string;
+    contact: Contact;
+  };
+  email: string;
+  created_at: string;
+}

@@ -19,6 +19,8 @@ type EditorState = {
   setAtsScore: (atsScore: number) => void;
   suggestions: string[];
   setSuggestions: (suggestions: string[]) => void;
+  refresh: boolean
+  toggleRefresh: () => void
 };
 
 export const useEditorStore = create<EditorState>((set) => ({
@@ -48,4 +50,6 @@ export const useEditorStore = create<EditorState>((set) => ({
   setAtsScore: (atsScore) => set({ atsScore }),
   suggestions: [],
   setSuggestions: (suggestions) => set({ suggestions }),
+  refresh: false,
+  toggleRefresh: () => set((state) => ({ refresh: !state.refresh })),
 }));
