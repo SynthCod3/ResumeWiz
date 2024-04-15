@@ -25,6 +25,7 @@ import { Button } from '@/components/ui/button';
 import { llm_inference } from '@/app/llm/services/api';
 import { supabase } from '@/utils/supabase';
 import { toast } from 'sonner';
+import AiModal from './aiModal';
 
 export function Editor() {
   const setName = useEditorStore((state) => state.setName);
@@ -55,6 +56,14 @@ export function Editor() {
     startingDate: '',
     endingDate: '',
   });
+  const [isAIModuleOpen, setIsAIModuleOpen] = React.useState(false);
+  const projects = useEditorStore((state) => state.projects);
+  const setProjects = useEditorStore((state) => state.setProjects);
+  const [newProject, setNewProject] = React.useState<Projects>();
+  const setSuggestions = useEditorStore((state) => state.setSuggestions);
+  const suggestions = useEditorStore((state) => state.suggestions);
+  const atsScore = useEditorStore((state) => state.atsScore);
+  const setAtsScore = useEditorStore((state) => state.setAtsScore);
 
   const [template, setTemplate] = React.useState(1);
   useEffect(() => {
@@ -105,6 +114,7 @@ export function Editor() {
     skills: skills,
     experience: experience,
     education: education,
+    projects: projects,
   };
   const prompt = `
   You are a strict HR manager reviewing a job applicant's resume. Provide feedback on the resume and calculate an ATS score.
@@ -145,8 +155,11 @@ export function Editor() {
       const { suggestions, ATS_score } = feedback;
 
       // Now you can use the suggestions and ATS_score variables as needed
+      setIsAIModuleOpen(true);
       console.log('Suggestions:', suggestions);
       console.log('ATS Score:', ATS_score);
+      setAtsScore(ATS_score);
+      setSuggestions(suggestions);
     } catch (error) {
       console.error('Error fetching resume feedback:', error);
     }
@@ -156,19 +169,19 @@ export function Editor() {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    console.log("calling save")
+    console.log('calling save');
     const { data, error } = await supabase
       .from('users')
       .update({ data: resumeDetails })
       .eq('id', user?.id)
       .select();
-      if(error){
-        toast.error(error.message)
-        throw error
-      } else if (data) {
-        toast.success('Resume saved successfully!')
-        return data
-      }
+    if (error) {
+      toast.error(error.message);
+      throw error;
+    } else if (data) {
+      toast.success('Resume saved successfully!');
+      return data;
+    }
   };
 
   return (
@@ -513,6 +526,16 @@ export function Editor() {
               ATS & Resume Feedback
             </Button>
           </div>
+          <AiModal
+            title="AI Suggestions and ATS Checker"
+            onClose={() => {
+              setIsAIModuleOpen(false);
+            }}
+            onDone={() => {
+              setIsAIModuleOpen(false);
+            }}
+            isOpen={isAIModuleOpen}
+          />
           <div className="px-2">
             <Button
               onClick={() => {

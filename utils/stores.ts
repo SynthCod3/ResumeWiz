@@ -15,6 +15,10 @@ type EditorState = {
   setDescription: (description: string) => void;
   contact: Contact;
   setContact: (contact: Contact) => void;
+  atsScore: number;
+  setAtsScore: (atsScore: number) => void;
+  suggestions: string[];
+  setSuggestions: (suggestions: string[]) => void;
 };
 
 export const useEditorStore = create<EditorState>((set) => ({
@@ -40,4 +44,8 @@ export const useEditorStore = create<EditorState>((set) => ({
     portfolio: '',
   },
   setContact: (contact) => set({ contact }),
+  atsScore: 0,
+  setAtsScore: (atsScore) => set({ atsScore }),
+  suggestions: [],
+  setSuggestions: (suggestions) => set({ suggestions }),
 }));
