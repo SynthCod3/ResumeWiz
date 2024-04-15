@@ -23,7 +23,6 @@ import jsPDF from 'jspdf';
 import { useEditorStore } from '@/utils/stores';
 import { Button } from '@/components/ui/button';
 import { llm_inference } from '@/app/llm/services/api';
-import { ScrollArea } from '@radix-ui/react-scroll-area';
 import { supabase } from '@/utils/supabase';
 import { toast } from 'sonner';
 import AiModal from './aiModal';
@@ -187,7 +186,6 @@ export function Editor() {
 
   return (
     <div className="w-full max-w-90 px-4 mx-auto lg:grid lg:gap-4 lg:px-6 lg:grid-cols-2 mt-20">
-      <ScrollArea className='h-[200px]'>
       <div className="border lg:border-0 lg:rounded lg:overflow-hidden">
         <div className="p-4 space-y-4 lg:p-10">
           <div className="space-y-2">
@@ -492,7 +490,6 @@ export function Editor() {
           </div>
         </div>
       </div>
-        </ScrollArea>
       <div>
         <div className="flex flex-row">
           <Select

@@ -23,7 +23,7 @@ export function Guide() {
                   alt="Step 1"
                   className="aspect-video object-cover"
                   height="250"
-                  src="/placeholder.svg"
+                  src="/step1.svg"
                   width="500"
                 />
               </div>
@@ -40,7 +40,7 @@ export function Guide() {
                   alt="Step 2"
                   className="aspect-video object-cover"
                   height="250"
-                  src="/placeholder.svg"
+                  src="/step2.svg"
                   width="500"
                 />
               </div>
@@ -57,7 +57,7 @@ export function Guide() {
                   alt="Step 3"
                   className="aspect-video object-cover"
                   height="250"
-                  src="/placeholder.svg"
+                  src="/step3.svg"
                   width="500"
                 />
               </div>
@@ -74,7 +74,7 @@ export function Guide() {
                   alt="Step 4"
                   className="aspect-video object-cover"
                   height="250"
-                  src="/placeholder.svg"
+                  src="/step4.svg"
                   width="500"
                 />
               </div>
@@ -91,7 +91,7 @@ export function Guide() {
                   alt="Step 5"
                   className="aspect-video object-cover"
                   height="250"
-                  src="/placeholder.svg"
+                  src="/step5.svg"
                   width="500"
                 />
               </div>
@@ -108,7 +108,7 @@ export function Guide() {
                   alt="Step 6"
                   className="aspect-video object-cover"
                   height="250"
-                  src="/placeholder.svg"
+                  src="/step6.svg"
                   width="500"
                 />
               </div>
