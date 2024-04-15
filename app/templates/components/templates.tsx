@@ -31,7 +31,7 @@ export function Templates() {
                   alt="Template thumbnail"
                   className="aspect-[1/1.414] overflow-hidden object-cover object-center"
                   height="250"
-                  src="/placeholder.svg"
+                  src="/resume1.svg"
                   width="400"
                 />
               </div>
@@ -51,12 +51,12 @@ export function Templates() {
                   alt="Template thumbnail"
                   className="aspect-[1/1.414] overflow-hidden object-cover object-center"
                   height="250"
-                  src="/placeholder.svg"
+                  src="/resume2.svg"
                   width="400"
                 />
               </div>
               <div className="grid w-full items-center justify-center p-4 border-t border-gray-200 text-center">
-                <h3 className="font-bold">Professional</h3>
+                <h3 className="font-bold">Simple</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   A clean and modern template
                 </p>
@@ -71,12 +71,12 @@ export function Templates() {
                   alt="Template thumbnail"
                   className="aspect-[1/1.414] overflow-hidden object-cover object-center"
                   height="250"
-                  src="/placeholder.svg"
+                  src="/resume3.svg"
                   width="400"
                 />
               </div>
               <div className="grid w-full items-center justify-center p-4 border-t border-gray-200 text-center">
-                <h3 className="font-bold">Professional</h3>
+                <h3 className="font-bold">Elegant</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   A clean and modern template
                 </p>
@@ -91,12 +91,12 @@ export function Templates() {
                   alt="Template thumbnail"
                   className="aspect-[1/1.414] overflow-hidden object-cover object-center"
                   height="250"
-                  src="/placeholder.svg"
+                  src="/resume4.svg"
                   width="400"
                 />
               </div>
               <div className="grid w-full items-center justify-center p-4 border-t border-gray-200 text-center">
-                <h3 className="font-bold">Professional</h3>
+                <h3 className="font-bold">Clean</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   A clean and modern template
                 </p>
