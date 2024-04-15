@@ -22,6 +22,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { useEditorStore } from '@/utils/stores';
 import { Button } from '@/components/ui/button';
+import { llm_inference } from '@/app/llm/services/api';
 
 export function Editor() {
   const setName = useEditorStore((state) => state.setName);
@@ -52,7 +53,6 @@ export function Editor() {
     startingDate: '',
     endingDate: '',
   });
-  
 
   const [template, setTemplate] = React.useState(1);
   useEffect(() => {
@@ -91,6 +91,48 @@ export function Editor() {
         y: 0,
         width: element.offsetWidth,
       });
+    }
+  };
+  const name = useEditorStore((state) => state.name);
+  const description = useEditorStore((state) => state.description);
+
+  const resumeDetails = {
+    name: name,
+    description: description,
+    constact: contact,
+    skills: skills,
+    experience: experience,
+    education: education,
+  };
+  const prompt = `
+  You are a strict HR manager reviewing a job applicant's resume. Provide feedback on the resume and calculate an ATS score.
+  
+  Resume Details:
+  ${JSON.stringify(resumeDetails)}
+  
+  Feedback:
+  1. **Format**: Ensure the resume follows a standard format with clear sections (e.g., Contact Information, Summary/Objective, Work Experience, Education).
+  2. **Content**: Evaluate the content of the resume. Ensure it includes relevant skills, experiences, achievements, and qualifications tailored to the job position.
+  3. **Grammar and Spelling**: Check for any grammatical errors or spelling mistakes and suggest corrections.
+  4. **Keywords**: Ensure the resume contains relevant keywords related to the job position to pass through ATS systems.
+  5. **Overall Impression**: Provide an overall impression of the resume and any additional suggestions for improvement.
+  
+  ATS Score Calculation:
+  - Assess the resume based on its compatibility with Applicant Tracking Systems (ATS). Assign a score out of 100 based on factors such as formatting, keywords, and overall suitability for ATS screening.
+  
+  Output Format (JSON):
+  {
+    "suggestions": ["Provide specific suggestions for improvement."],
+    "ATS_score": 75
+  }
+  `;
+
+  const fetchData = async () => {
+    try {
+      const feedback = await llm_inference(prompt);
+      console.log('Feedback:', feedback);
+    } catch (error) {
+      console.error('Error fetching resume feedback:', error);
     }
   };
 
@@ -249,7 +291,6 @@ export function Editor() {
                     </div>
                   ))}
                 </div>
-
               </div>
               <div className="space-y-2">
                 <Label htmlFor="experience">Work Experience</Label>
@@ -379,31 +420,42 @@ export function Editor() {
         </div>
       </div>
       <div>
-        <Select
-          onValueChange={(value) => {
-            if (value === 'png') downloadAsImage();
-            if (value === 'pdf') downloadAsPDF();
-          }}
-        >
-          <Label>Download as :</Label>
-          <SelectTrigger
-            className="w-[180px] mb-3"
-            style={{
-              outline: 'none',
-              /* Optional: Add custom styles for focus state to maintain accessibility */
-              boxShadow: '0 0 0 1px rgba(0, 123, 255, 0.1)', // Example custom focus style
+        <div className="flex flex-row">
+          <Select
+            onValueChange={(value) => {
+              if (value === 'png') downloadAsImage();
+              if (value === 'pdf') downloadAsPDF();
             }}
           >
-            <SelectValue placeholder="Download" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Format</SelectLabel>
-              <SelectItem value="png">PNG</SelectItem>
-              <SelectItem value="pdf">PDF</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+            <Label>Download as :&nbsp;&nbsp;</Label>
+            <SelectTrigger
+              className="w-[180px] mb-3"
+              style={{
+                outline: 'none',
+                /* Optional: Add custom styles for focus state to maintain accessibility */
+                boxShadow: '0 0 0 1px rgba(0, 123, 255, 0.1)', // Example custom focus style
+              }}
+            >
+              <SelectValue placeholder="Download" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Format</SelectLabel>
+                <SelectItem value="png">PNG</SelectItem>
+                <SelectItem value="pdf">PDF</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          <div className="px-2">
+            <Button
+              onClick={() => {
+                fetchData();
+              }}
+            >
+              ATS & Resume Feedback
+            </Button>
+          </div>
+        </div>
         {renderTemplate(template)}
       </div>
     </div>

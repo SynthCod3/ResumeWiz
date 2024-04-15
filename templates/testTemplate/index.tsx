@@ -11,12 +11,6 @@ const TestTemplate = () => {
   const experience = useEditorStore((state) => state.experience);
   const education = useEditorStore((state) => state.education);
 
-  const name = useEditorStore((state) => state.name);
-  const description = useEditorStore((state) => state.description);
-  const contact = useEditorStore((state) => state.contact);
-  const skills = useEditorStore((state) => state.skills);
-  const experience = useEditorStore((state) => state.experience);
-
   return (
     <div className={styles.Wrapper} style={{ aspectRatio: '1 / 1.414' }}>
       <div id="resume" className={styles.ResumeContainer}>
