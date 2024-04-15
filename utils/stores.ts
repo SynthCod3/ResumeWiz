@@ -19,8 +19,12 @@ type EditorState = {
   setAtsScore: (atsScore: number) => void;
   suggestions: string[];
   setSuggestions: (suggestions: string[]) => void;
+  feedback: string[];
+  setFeedback: (feedback: string[]) => void;
   refresh: boolean
   toggleRefresh: () => void
+  jobDescription: string
+  setJobDescription: (jobDescription: string) => void
 };
 
 export const useEditorStore = create<EditorState>((set) => ({
@@ -52,4 +56,8 @@ export const useEditorStore = create<EditorState>((set) => ({
   setSuggestions: (suggestions) => set({ suggestions }),
   refresh: false,
   toggleRefresh: () => set((state) => ({ refresh: !state.refresh })),
+  jobDescription: '',
+  setJobDescription: (jobDescription) => set({ jobDescription }),
+  feedback: [],
+  setFeedback: (feedback) => set({ feedback }),
 }));

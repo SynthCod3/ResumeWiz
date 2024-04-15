@@ -106,6 +106,9 @@ export function Editor() {
   };
   const name = useEditorStore((state) => state.name);
   const description = useEditorStore((state) => state.description);
+  const jobDescription = useEditorStore((state) => state.jobDescription);
+  const setJobDescription = useEditorStore((state) => state.setJobDescription);
+  const setFeedback = useEditorStore((state) => state.setFeedback);
 
   const resumeDetails = {
     name: name,
@@ -118,6 +121,9 @@ export function Editor() {
   };
   const prompt = `
   You are a strict HR manager reviewing a job applicant's resume. Provide feedback on the resume and calculate an ATS score.
+
+  Job Description:
+  ${jobDescription}
   
   Resume Details:
   ${JSON.stringify(resumeDetails)}  
@@ -128,14 +134,20 @@ export function Editor() {
   3. **Grammar and Spelling**: Check for any grammatical errors or spelling mistakes and suggest corrections.
   4. **Keywords**: Ensure the resume contains relevant keywords related to the job position to pass through ATS systems.
   5. **Overall Impression**: Provide an overall impression of the resume and any additional suggestions for improvement.
+
+  Suggestions:
+  1. Provide specific suggestions for improvement.
+  2. Provide changes that can be made to improve the resume.
   
   ATS Score Calculation:
   - Assess the resume based on its compatibility with Applicant Tracking Systems (ATS). Assign a score out of 100 based on factors such as formatting, keywords, and overall suitability for ATS screening.
+  - Try to keep the ATS score as low as possible.
   
   Output Format (JSON):
   {
-    "suggestions": ["Provide specific suggestions for improvement."],
-    "ATS_score": 75
+    "suggestions": ["Provide specific changes for improvement."],
+    "ATS_score": 75,
+    "feedback": ["Provide specific feedback for improvement."]
   }
   `;
 
@@ -149,17 +161,19 @@ export function Editor() {
       const jsonData = feedbackString.substring(startIndex, endIndex + 1); // Extract the JSON data
 
       // Parse the JSON data into an object
-      const feedback = JSON.parse(jsonData);
+      const feedbacks = JSON.parse(jsonData);
 
       // Extract suggestions and ATS score
-      const { suggestions, ATS_score } = feedback;
+      const { suggestions, ATS_score, feedback } = feedbacks;
 
       // Now you can use the suggestions and ATS_score variables as needed
       setIsAIModuleOpen(true);
       console.log('Suggestions:', suggestions);
       console.log('ATS Score:', ATS_score);
+      console.log('Feedback:', feedback);
       setAtsScore(ATS_score);
       setSuggestions(suggestions);
+      setFeedback(feedback);
     } catch (error) {
       console.error('Error fetching resume feedback:', error);
     }
@@ -188,6 +202,17 @@ export function Editor() {
     <div className="w-full max-w-90 px-4 mx-auto lg:grid lg:gap-4 lg:px-6 lg:grid-cols-2 mt-20">
       <div className="border lg:border-0 lg:rounded lg:overflow-hidden">
         <div className="p-4 space-y-4 lg:p-10">
+          <div className="space-y-2">
+            <Label htmlFor="job">Job Description (optional)</Label>
+            <Textarea
+              id="job"
+              placeholder="Enter the job description"
+              value={jobDescription}
+              onChange={(e) => {
+                setJobDescription(e.target.value);
+              }}
+            />
+          </div>
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
             <Input
