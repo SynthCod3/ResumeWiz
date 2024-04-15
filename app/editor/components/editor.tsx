@@ -175,6 +175,7 @@ export function Editor() {
                       course: e.target.value,
                     });
                   }}
+                  value={newEducation.course}
                 />
                 <Input
                   className="min-h-[50px]"
@@ -185,6 +186,7 @@ export function Editor() {
                       university: e.target.value,
                     });
                   }}
+                  value={newEducation.university}
                 />
                 <Input
                   className="min-h-[50px]"
@@ -195,6 +197,7 @@ export function Editor() {
                       institution: e.target.value,
                     });
                   }}
+                  value={newEducation.institution}
                 />
                 <Input
                   className="min-h-[50px]"
@@ -205,7 +208,19 @@ export function Editor() {
                       score: e.target.value,
                     });
                   }}
+                  value={newEducation.score}
                 />
+                  <Input
+                    className="min-h-[50px]"
+                    placeholder="Enter your starting year"
+                    onChange={(e) => {
+                      setNewEducation({
+                        ...newEducation,
+                        startingDate: e.target.value,
+                      });
+                    }}
+                    value={newEducation.startingDate}
+                  />
                 <Input
                   className="min-h-[50px]"
                   placeholder="Enter your ending year"
@@ -215,9 +230,11 @@ export function Editor() {
                       endingDate: e.target.value,
                     });
                   }}
+                  value={newEducation.endingDate}
                 />
                 <Button
                   onClick={() => {
+                    if (!newEducation.course) return;
                     setEducation([...education, newEducation]);
                     setNewEducation({
                       course: '',
