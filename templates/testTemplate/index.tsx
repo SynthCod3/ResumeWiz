@@ -37,7 +37,8 @@ const TestTemplate = () => {
             {education.map((edu) => (
           <p className="">
                <>
-            <div>{edu.course}  |{edu.institution}| ({edu.university})|({edu.startingDate}) - ({edu.endingDate}) </div>
+            <div>{edu.course}  |{edu.institution}</div>
+            <div>({edu.university})|({edu.startingDate}) - ({edu.endingDate}) </div>
             <p>Score: {edu.score} </p>
             </>
           </p>)) }
