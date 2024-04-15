@@ -19,8 +19,8 @@ export default function Template1() {
         <div style={{ textAlign: 'center' }}>
           <h1 style={{ fontSize: '1.5rem', fontWeight: '700' }}>{name}</h1>
           <p style={{ fontSize: '1.rem' }}>
-            {contact.address} | {contact.phone} |  {contact.email} |
-            {contact.linkedin}
+            {contact?.address} | {contact?.phone} |  {contact?.email} |
+            {contact?.linkedin}
           </p>
         </div>
         <hr />

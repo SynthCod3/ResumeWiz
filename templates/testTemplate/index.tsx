@@ -23,7 +23,7 @@ const TestTemplate = () => {
           <div className="">
             <p>Email: {contact.email}</p>
             <p>Phone: {contact.phone}</p>
-            <p>Address: {contact.address}</p>
+            <p>Address: {contact?.address}</p>
           </div>
         </div>
         <div>

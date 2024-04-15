@@ -15,10 +15,14 @@ type EditorState = {
   setDescription: (description: string) => void;
   contact: Contact;
   setContact: (contact: Contact) => void;
+  atsScore: number;
+  setAtsScore: (atsScore: number) => void;
+  suggestions: string[];
+  setSuggestions: (suggestions: string[]) => void;
 };
 
 export const useEditorStore = create<EditorState>((set) => ({
-  name: 'Jane Doe',
+  name: '',
   setName: (name) => set({ name }),
   skills: [],
   setSkills: (skills) => set({ skills }),
@@ -31,13 +35,17 @@ export const useEditorStore = create<EditorState>((set) => ({
   description: '',
   setDescription: (description) => set({ description }),
   contact: {
-    email: 'afojnvjnd@gmail.com',
-    phone: '9899898988',
-    address: 'City, State ZIP',
-    linkedin: 'linkedin.com/in/your-name-here',
-    github: 'github.com/your-name-here',
-    twitter: 'twitter.com/your-name-here',
-    portfolio: 'portfolio.com/your-name-here',
+    email: '',
+    phone: '',
+    address: '',
+    linkedin: '',
+    github: '',
+    twitter: '',
+    portfolio: '',
   },
   setContact: (contact) => set({ contact }),
-}))
+  atsScore: 0,
+  setAtsScore: (atsScore) => set({ atsScore }),
+  suggestions: [],
+  setSuggestions: (suggestions) => set({ suggestions }),
+}));
