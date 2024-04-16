@@ -129,5 +129,4 @@ export function Guide() {
       </div>
     </section>
   );
-  );
 }
