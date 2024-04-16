@@ -42,14 +42,14 @@ export default function Template1() {
             ))}
           </div>
         </section>
-        <section>
+        {/* <section>
           <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
             PROFESSIONAL ACCOMPLISHMENTS
           </h2>
           <ul style={{ listStyleType: 'disc', paddingLeft: '1.25rem', fontSize: '0.875rem', marginTop: '0', marginBottom: '1rem' }}>
-            {/* Professional accomplishments list */}
+            Professional accomplishments list
           </ul>
-        </section>
+        </section> */}
         <section>
           <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>WORK HISTORY</h2>
           <div>

@@ -183,18 +183,37 @@ export function Editor() {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    console.log('calling save');
-    const { data, error } = await supabase
+
+    let { data: users, error: Check } = await supabase
       .from('users')
-      .update({ data: resumeDetails })
-      .eq('id', user?.id)
-      .select();
-    if (error) {
-      toast.error(error.message);
-      throw error;
-    } else if (data) {
-      toast.success('Resume saved successfully!');
-      return data;
+      .select('*')
+      .eq('id', user?.id);
+    if (users?.length === 0) {
+      const { data: insert, error } = await supabase
+        .from('users')
+        .insert([
+          { name: name, id: user?.id, data: resumeDetails, email: user?.email },
+        ])
+        .select();
+      if (error) {
+        throw error;
+      } else if (insert) {
+        toast.success('Resume saved successfully!');
+        return insert;
+      }
+    } else if (users && users?.length > 0) {
+      const { data, error } = await supabase
+        .from('users')
+        .update({ data: resumeDetails })
+        .eq('id', user?.id)
+        .select();
+      if (error) {
+        toast.error(error.message);
+        throw error;
+      } else if (data) {
+        toast.success('Resume saved successfully!');
+        return data;
+      }
     }
   };
 
