@@ -8,6 +8,9 @@ import { IoMdClose } from 'react-icons/io';
 import { Button } from '../ui/button';
 import styles from './index.module.css';
 import { IoCloseSharp } from 'react-icons/io5';
+import { supabase } from '@/utils/supabase';
+import { toast } from 'sonner';
+import { useEditorStore } from '@/utils/stores';
 
 export const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -15,6 +18,8 @@ export const Navbar = () => {
   const router = useRouter();
   const path = usePathname();
   const navContent = ['Templates', 'About Us'];
+  const [userSession, setUserSession] = useState(false);
+  const refresh = useEditorStore((state) => state.refresh);
 
   useEffect(() => {
     const changeNavBg = () => {
@@ -24,6 +29,23 @@ export const Navbar = () => {
     window.addEventListener('scroll', changeNavBg);
     return () => window.removeEventListener('scroll', changeNavBg);
   }, []);
+
+  useEffect(() => {
+    fetchUserSession();
+  }, [userSession, refresh]);
+
+  const fetchUserSession = async () => {
+    const { data, error } = await supabase.auth.getSession();
+    if (error) {
+      console.log('Error fetching user session:', error);
+      setUserSession(false);
+      return false;
+    } else if (data.session?.access_token) {
+      console.log('User session:', data.session);
+      setUserSession(true);
+      return true;
+    }
+  };
 
   return (
     <div
@@ -82,18 +104,36 @@ export const Navbar = () => {
                 {content}
               </Link>
             ))}
-            <div className="w-full flex justify-center align-center">
-              <Link href="/auth">
-                <Button className="w-80">Sign Up</Button>
-              </Link>
-            </div>
+            {!userSession ? (
+              <div className="w-full flex justify-center align-center">
+                <Link href="/auth">
+                  <Button>Sign Up</Button>
+                </Link>
+              </div>
+            ) : (
+              <div>
+                <Link href="/profile">
+                  <Button>Profile</Button>
+                </Link>
+              </div>
+            )}
           </div>
         )}
       </div>
-      <div className={styles.EndButton}>
-        <Link href="/auth">
-          <Button>Sign Up</Button>
-        </Link>
+      <div className="hidden md:flex">
+        {!userSession ? (
+          <div className={styles.EndButton}>
+            <Link href="/auth">
+              <Button>Sign Up</Button>
+            </Link>
+          </div>
+        ) : (
+          <div>
+            <Link href="/profile">
+              <Button>Profile</Button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
