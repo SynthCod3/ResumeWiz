@@ -13,6 +13,7 @@ const EditorPage = () => {
   const setDescription = useEditorStore((state) => state.setDescription);
   const setContact = useEditorStore((state) => state.setContact);
   const setProjects = useEditorStore((state) => state.setProjects);
+  const setImage = useEditorStore((state) => state.setImage); 
   
   useEffect(() => {
     fetchData();
@@ -37,6 +38,7 @@ const EditorPage = () => {
       setDescription(users.data.description);
       setContact(users.data.contact);
       setProjects(users.data.projects);
+      setImage(users.data.image);
       return users;
     }
   };

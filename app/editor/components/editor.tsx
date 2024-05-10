@@ -207,7 +207,7 @@ export function Editor() {
     } else if (users && users?.length > 0) {
       const { data, error } = await supabase
         .from('users')
-        .update({ data: resumeDetails })
+        .update({ data: { ...resumeDetails, image } })
         .eq('id', user?.id)
         .select();
       if (error) {
@@ -564,19 +564,38 @@ export function Editor() {
                   ) : (
                     <div className="space-y-2 flex flex-col">
                       <div>
-                        {image.map((images, index) => (
-                          <div key={index} >
-                            <img
-                             className="w-24 h-24 object-cover rounded"
-                              src={`data:image/jpeg;base64,${images}`}
-                              alt="Uploaded"
-                            />
-                            <div onClick={() => removeImage(index)}>×</div>
-                          </div>
-                        ))}
+                        {image[0] && <div>
+                          <img
+                            src={`data:image/jpeg;base64,${image[0]}`}
+                            alt="Uploaded"
+                          />
+                          <div onClick={() => removeImage(0)}>×</div>
+                        </div>}
                       </div>
                       <Label htmlFor="skills">Profile Picture</Label>
                       <Button>Upload a photo</Button>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  {isDragActive ? (
+                    <p>Drop the files here ...</p>
+                  ) : (
+                    <div className="space-y-2 flex flex-col">
+                      <div>
+                        {image[1] && <div>
+                          <img
+                            src={`data:image/jpeg;base64,${image[1]}`}
+                            alt="Uploaded"
+                          />
+                          <div onClick={() => removeImage(1)}>×</div>
+                        </div>}
+                      </div>
+                      <Label htmlFor="skills">Digital Signature</Label>
+                      <Button>Upload a signature</Button>
                     </div>
                   )}
                 </div>
