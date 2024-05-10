@@ -14,6 +14,7 @@ const EditorPage = () => {
   const setContact = useEditorStore((state) => state.setContact);
   const setProjects = useEditorStore((state) => state.setProjects);
   const setImage = useEditorStore((state) => state.setImage); 
+  const setSign = useEditorStore((state) => state.setSign);
   
   useEffect(() => {
     fetchData();
@@ -39,6 +40,7 @@ const EditorPage = () => {
       setContact(users.data.contact);
       setProjects(users.data.projects);
       setImage(users.data.image);
+      setSign(users.data.sign);
       return users;
     }
   };
