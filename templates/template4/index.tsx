@@ -12,6 +12,7 @@ const Template4 = () => {
   const experience = useEditorStore((state) => state.experience);
   const education = useEditorStore((state) => state.education);
   const image = useEditorStore((state) => state.image);
+  const sign = useEditorStore((state) => state.sign);
 
 
   return (
@@ -178,8 +179,8 @@ const Template4 = () => {
             </div>
             <img
             className={styles.sign}
-              src="https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?s=612x612&w=0&k=20&c=kPvoBm6qCYzQXMAn9JUtqLREXe9-PlZyMl9i-ibaVuY="
-              alt=""
+            src={`data:image/jpeg;base64,${sign[0]}`}
+            alt="noting"
             />
           </div>
         </div>

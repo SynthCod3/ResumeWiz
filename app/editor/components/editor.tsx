@@ -595,6 +595,7 @@ export function Editor() {
                       <div>
                         {image && image.length > 0 && image[0] && <div>
                           <img
+                          className="w-24 h-24 object-cover rounded"
                             src={`data:image/jpeg;base64,${image[0]}`}
                             alt="Uploaded"
                           />
@@ -617,6 +618,7 @@ export function Editor() {
                       <div>
                         {sign &&sign.length > 0 && sign[0] && <div>
                           <img
+                          className="w-24 h-24 object-cover rounded"
                             src={`data:image/jpeg;base64,${sign[0]}`}
                             alt="Uploaded"
                           />
