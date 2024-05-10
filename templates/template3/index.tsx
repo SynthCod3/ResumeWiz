@@ -10,10 +10,16 @@ const Template3 = () => {
   const skills = useEditorStore((state) => state.skills);
   const experience = useEditorStore((state) => state.experience);
   const education = useEditorStore((state) => state.education);
+  const image = useEditorStore((state) => state.image);
 
   return (
     <div className={styles.Wrapper} style={{ aspectRatio: '1 / 1.414' }}>
       <div id="resume" className={styles.ResumeContainer}>
+        {image[0] && <div>
+            <img 
+                src={`data:image/jpeg;base64,${image[0]}`}
+                alt="noting" />
+        </div>}
         <div>
           <h1 className={styles.heading}>{name}</h1>
           <h2>Software Engineer</h2>

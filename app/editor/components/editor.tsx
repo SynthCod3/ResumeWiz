@@ -565,7 +565,7 @@ export function Editor() {
                     <div className="space-y-2 flex flex-col">
                       <div>
                         {image.map((images, index) => (
-                          <div key={index}>
+                          <div key={index} >
                             <img
                               src={`data:image/jpeg;base64,${images}`}
                               alt="Uploaded"
