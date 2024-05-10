@@ -1,0 +1,50 @@
+.Header {
+  display: flex;
+  padding: 15px;
+}
+.Header .imageouter {
+  border-radius: 50%;
+  border: 1px solid grey;
+  width: fit-content;
+  height: fit-content;
+  z-index: 88;
+  flex-shrink: 0;
+}
+.Header img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 15px solid white;
+}
+
+.Header .Content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: calc(100% );
+  margin-left: -30px;
+}
+
+.Header .top {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  padding-left: 40px;
+}
+
+.Header .social {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: grey;
+  color: white;
+  padding: 10px 10px 10px 40px;
+  gap: 20px;
+}
+
+.Header .social label{
+    width: 40%;
+    min-width: fit-content;
+    display: flex;
+    gap: 10px;
+}
