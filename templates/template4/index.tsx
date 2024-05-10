@@ -16,7 +16,9 @@ const Template4 = () => {
           </div>
           <div className={styles.Content}>
             <div className={styles.top}>
-              <h1>DENICE HARRIS</h1>
+              <h1 style={{ fontSize: '2rem', fontWeight: 600 }}>
+                DENICE HARRIS
+              </h1>
               <p>Senior Graphic Design Specialist</p>
             </div>
             <div className={styles.social}>
@@ -91,7 +93,7 @@ const Template4 = () => {
               <IoBag />
               <h2>PROFESSIONAL EXPERIENCE</h2>
             </div>
-            <div>
+            <div className={styles.individual}>
               <div>
                 <h3>Senior Graphic Design Specialist</h3>
                 <h4>Experion, New York, NY </h4>
@@ -116,7 +118,7 @@ const Template4 = () => {
                 </li>
               </ul>
             </div>
-            <div>
+            <div className={styles.individual}>
               <div>
                 <h3>Senior Graphic Design Specialist</h3>
                 <h4>Experion, New York, NY </h4>
@@ -141,7 +143,7 @@ const Template4 = () => {
                 </li>
               </ul>
             </div>
-            <div>
+            <div className={styles.individual}>
               <div>
                 <h3>Senior Graphic Design Specialist</h3>
                 <h4>Experion, New York, NY </h4>
@@ -166,6 +168,11 @@ const Template4 = () => {
                 </li>
               </ul>
             </div>
+            <img
+            className={styles.sign}
+              src="https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?s=612x612&w=0&k=20&c=kPvoBm6qCYzQXMAn9JUtqLREXe9-PlZyMl9i-ibaVuY="
+              alt=""
+            />
           </div>
         </div>
       </div>
