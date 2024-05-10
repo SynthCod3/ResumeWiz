@@ -567,6 +567,7 @@ export function Editor() {
                         {image.map((images, index) => (
                           <div key={index} >
                             <img
+                             className="w-24 h-24 object-cover rounded"
                               src={`data:image/jpeg;base64,${images}`}
                               alt="Uploaded"
                             />

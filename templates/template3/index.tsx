@@ -15,14 +15,17 @@ const Template3 = () => {
   return (
     <div className={styles.Wrapper} style={{ aspectRatio: '1 / 1.414' }}>
       <div id="resume" className={styles.ResumeContainer}>
-        {image[0] && <div>
+        <div className={styles.headingWrapper}>
+        {image[0] && <div className={styles.photoWrapper}>
             <img 
                 src={`data:image/jpeg;base64,${image[0]}`}
-                alt="noting" />
+                alt="noting"
+                 />
         </div>}
         <div>
           <h1 className={styles.heading}>{name}</h1>
           <h2>Software Engineer</h2>
+        </div>
         </div>
         <div>
           <h2>Contact Information</h2>
