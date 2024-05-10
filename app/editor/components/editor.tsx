@@ -146,7 +146,7 @@ export function Editor() {
   Output Format (JSON):
   {
     "suggestions": ["Provide specific changes for improvement."],
-    "ATS_score": 75,
+    "ATS_score": 30,
     "feedback": ["Provide specific feedback for improvement."]
   }
   `;
