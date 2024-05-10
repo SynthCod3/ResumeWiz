@@ -25,6 +25,7 @@ interface Projects {
 }
 
 interface Contact {
+  contact: ReactNode;
   email: string;
   phone?: string;
   address?: string;
