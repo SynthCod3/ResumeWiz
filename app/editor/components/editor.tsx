@@ -67,6 +67,8 @@ export function Editor() {
   const setAtsScore = useEditorStore((state) => state.setAtsScore);
   const setImage = useEditorStore((state) => state.setImage);
   const image = useEditorStore((state) => state.image);
+  const sign = useEditorStore((state) => state.sign);
+  const setSign = useEditorStore((state) => state.setSign);
 
   const [template, setTemplate] = React.useState(1);
   useEffect(() => {
@@ -207,7 +209,7 @@ export function Editor() {
     } else if (users && users?.length > 0) {
       const { data, error } = await supabase
         .from('users')
-        .update({ data: { ...resumeDetails, image } })
+        .update({ data: { ...resumeDetails, image, sign } })
         .eq('id', user?.id)
         .select();
       if (error) {
@@ -229,7 +231,7 @@ export function Editor() {
             .toString()
             .replace('data:', '')
             .replace(/^.+,/, '');
-          setImage([...image, base64String]);
+          setImage([base64String]);
         }
       };
       reader.readAsDataURL(file);
@@ -241,6 +243,33 @@ export function Editor() {
   // Function to remove an image from the list
   const removeImage = (index: number) => {
     setImage(image.filter((_, i) => i !== index));
+  };
+  
+  const onDrop2 = useCallback((acceptedFiles: File[]) => {
+    acceptedFiles.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          const base64String = reader.result
+            .toString()
+            .replace('data:', '')
+            .replace(/^.+,/, '');
+          setSign([base64String]);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  }, []);
+
+  const {
+    getRootProps: getRootProps2,
+    getInputProps: getInputProps2,
+    isDragActive: isDragActive2,
+  } = useDropzone({ onDrop: onDrop2 });
+
+  // Function to remove an image from the list
+  const removeSign = (index: number) => {
+    setSign(sign.filter((_, i) => i !== index));
   };
 
   return (
@@ -564,7 +593,7 @@ export function Editor() {
                   ) : (
                     <div className="space-y-2 flex flex-col">
                       <div>
-                        {image[0] && <div>
+                        {image && image.length > 0 && image[0] && <div>
                           <img
                             src={`data:image/jpeg;base64,${image[0]}`}
                             alt="Uploaded"
@@ -579,19 +608,19 @@ export function Editor() {
                 </div>
               </div>
               <div>
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  {isDragActive ? (
+                <div {...getRootProps2()}>
+                  <input {...getInputProps2()} />
+                  {isDragActive2 ? (
                     <p>Drop the files here ...</p>
                   ) : (
                     <div className="space-y-2 flex flex-col">
                       <div>
-                        {image[1] && <div>
+                        {sign &&sign.length > 0 && sign[0] && <div>
                           <img
-                            src={`data:image/jpeg;base64,${image[1]}`}
+                            src={`data:image/jpeg;base64,${sign[0]}`}
                             alt="Uploaded"
                           />
-                          <div onClick={() => removeImage(1)}>×</div>
+                          <div onClick={() => removeSign(0)}>×</div>
                         </div>}
                       </div>
                       <Label htmlFor="skills">Digital Signature</Label>

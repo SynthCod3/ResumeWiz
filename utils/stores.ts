@@ -27,6 +27,8 @@ type EditorState = {
   setJobDescription: (jobDescription: string) => void
   image: string[]
   setImage: (image: string[]) => void
+  sign: string[]
+  setSign: (sign: string[]) => void
 };
 
 export const useEditorStore = create<EditorState>((set) => ({
@@ -64,4 +66,6 @@ export const useEditorStore = create<EditorState>((set) => ({
   setFeedback: (feedback) => set({ feedback }),
   image: [],
   setImage: (image) => set({ image }),
+  sign: [],
+  setSign: (sign) => set({ sign }),
 }));
