@@ -25,6 +25,8 @@ type EditorState = {
   toggleRefresh: () => void
   jobDescription: string
   setJobDescription: (jobDescription: string) => void
+  image: string[]
+  setImage: (image: string[]) => void
 };
 
 export const useEditorStore = create<EditorState>((set) => ({
@@ -60,4 +62,6 @@ export const useEditorStore = create<EditorState>((set) => ({
   setJobDescription: (jobDescription) => set({ jobDescription }),
   feedback: [],
   setFeedback: (feedback) => set({ feedback }),
+  image: [],
+  setImage: (image) => set({ image }),
 }));

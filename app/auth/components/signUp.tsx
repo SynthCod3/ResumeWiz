@@ -10,7 +10,6 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { supabase } from '@/utils/supabase';
 import { toast } from 'sonner';
-import { NextRouter } from 'next/router';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { useEditorStore } from '@/utils/stores';
 

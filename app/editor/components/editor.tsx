@@ -7,7 +7,7 @@
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import renderTemplate from '@/templates';
 import {
   Select,
@@ -26,6 +26,7 @@ import { llm_inference } from '@/app/llm/services/api';
 import { supabase } from '@/utils/supabase';
 import { toast } from 'sonner';
 import AiModal from './aiModal';
+import { useDropzone } from 'react-dropzone';
 
 export function Editor() {
   const setName = useEditorStore((state) => state.setName);
@@ -64,6 +65,8 @@ export function Editor() {
   const suggestions = useEditorStore((state) => state.suggestions);
   const atsScore = useEditorStore((state) => state.atsScore);
   const setAtsScore = useEditorStore((state) => state.setAtsScore);
+  const setImage = useEditorStore((state) => state.setImage);
+  const image = useEditorStore((state) => state.image);
 
   const [template, setTemplate] = React.useState(1);
   useEffect(() => {
@@ -146,7 +149,7 @@ export function Editor() {
   Output Format (JSON):
   {
     "suggestions": ["Provide specific changes for improvement."],
-    "ATS_score": 75,
+    "ATS_score": 30,
     "feedback": ["Provide specific feedback for improvement."]
   }
   `;
@@ -215,6 +218,29 @@ export function Editor() {
         return data;
       }
     }
+  };
+
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    acceptedFiles.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          const base64String = reader.result
+            .toString()
+            .replace('data:', '')
+            .replace(/^.+,/, '');
+          setImage([...image, base64String]);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  // Function to remove an image from the list
+  const removeImage = (index: number) => {
+    setImage(image.filter((_, i) => i !== index));
   };
 
   return (
@@ -528,6 +554,30 @@ export function Editor() {
                       {skill}
                     </div>
                   ))}
+                </div>
+              </div>
+              <div>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  {isDragActive ? (
+                    <p>Drop the files here ...</p>
+                  ) : (
+                    <div className="space-y-2 flex flex-col">
+                      <div>
+                        {image.map((images, index) => (
+                          <div key={index}>
+                            <img
+                              src={`data:image/jpeg;base64,${images}`}
+                              alt="Uploaded"
+                            />
+                            <div onClick={() => removeImage(index)}>×</div>
+                          </div>
+                        ))}
+                      </div>
+                      <Label htmlFor="skills">Profile Picture</Label>
+                      <Button>Upload a photo</Button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

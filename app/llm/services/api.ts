@@ -22,7 +22,7 @@ export async function llm_inference(resumeDetails: string) {
     model: 'MISTRALAI/MIXTRAL-8X7B-INSTRUCT-V0.1', // Update this with your specific model
     prompt: `[INST] ${resumeDetails} [/INST]`,
     max_tokens: 2000,
-    temperature: 0.2,
+    temperature: 0.1,
   };
 
   try {
