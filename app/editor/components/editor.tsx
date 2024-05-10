@@ -207,7 +207,7 @@ export function Editor() {
     } else if (users && users?.length > 0) {
       const { data, error } = await supabase
         .from('users')
-        .update({ data: resumeDetails })
+        .update({ data: {...resumeDetails, image} })
         .eq('id', user?.id)
         .select();
       if (error) {
