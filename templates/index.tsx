@@ -3,6 +3,7 @@ import TestTemplate from './testTemplate';
 import Link from 'next/link';
 import Template1 from './template1';
 import Template2 from './template2';
+import Template4 from './template4';
 
 const renderTemplate = (templateId: number) => {
   switch (templateId) {
@@ -12,6 +13,8 @@ const renderTemplate = (templateId: number) => {
       return <Template2 />;
     case 3:
       return <TestTemplate />;
+    case 4:
+      return <Template4 />;
     default:
       return (
         <div>
