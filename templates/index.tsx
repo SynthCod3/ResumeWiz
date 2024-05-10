@@ -14,9 +14,9 @@ const renderTemplate = (templateId: number) => {
       return <Template2 />;
     case 3:
       return <TestTemplate />;
+    // case 4:
+    //   return <Template3 />;
     case 4:
-      return <Template3 />;
-    case 5:
       return <Template4 />;
     default:
       return (
